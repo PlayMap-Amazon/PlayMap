@@ -1,0 +1,62 @@
+.FirstContainer {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #FF9933, #FD751D);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+}
+
+.SecondContainer {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(to bottom, #FD751D, white);
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0px;
+}
+
+.Title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+  margin-top: 20px;
+}
+
+.CardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    gap: 20px;
+    width: 80%;
+    height: 60%;
+  }
+
+.Card {
+  flex: 1 0 calc(33.33% - 13.33px);
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+  background-color: #ffebde;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 3px solid #fc7921;
+  border-left: 6px solid #fc7921;
+}
+
+.customButton {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #F5E9E3;
+  color: white;
+  border: 3px solid #FB7E25;
+  border-radius: 24px;
+  cursor: pointer;
+  font-size: 1rem;
+}

@@ -1,0 +1,23 @@
+.topBarContainer {
+  width: 60%;
+  height: 100px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-top: 1%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.topBarItemsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 6px;
+}
