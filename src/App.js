@@ -6,6 +6,7 @@ import NotFoundPage from './modules/NotFoundPage/NotFoundPage';
 import LoginPage from './modules/Login/LoginPage';
 import { AuthProvider } from './AuthContext';
 import DashboardPage from './modules/Dashboard/DashboardPage';
+import ChatBot from './modules/ChatBot/ChatBot.jsx';
 
 const cards = [
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
   { path: '/', element: <MainPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/dashboard', element: <DashboardPage /> },
+  { path: '/chatbot', element: <ChatBot /> },
   { path: '*', element: <NotFoundPage /> }
 ]);
 
