@@ -9,57 +9,41 @@ body, html {
   height: 100%;
 }
 
-.logo-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.logo {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  background: transparent; /* Optional, doesn’t affect PNG */
-}
-
-
-.logo-text {
-  font-size: 22px;
-  font-weight: bold;
-  color: white;
-}
-
 .container {
   display: flex;
   height: 100vh;
 }
 
 .sidebar {
-  background-color: #f78f1e;
+  background-color: #fb9f3e;
   color: #000;
   width: 250px;
   height: 100vh;
   padding: 20px;
   font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
 .logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   text-align: center;
-  margin-bottom: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 80px;
   object-fit: contain;
+  background: transparent; 
 }
 
 .brand-name {
   font-size: 24px;
   font-weight: bold;
-  color: white;
-  text-align: center;
+  color: #f78f1e;
   margin: 10px 0 20px;
 }
 
@@ -67,6 +51,9 @@ body, html {
   list-style: none;
   padding: 0;
   margin-bottom: 15px;
+  margin-top: 10px;
+  flex-grow: 1;
+  overflow-y: auto;
 }
 
 .menu li {
@@ -77,28 +64,32 @@ body, html {
   border-radius: 10px;
   cursor: pointer;
   transition: background 0.2s;
+  user-select: none;
+  color: #000;
 }
 
 .menu li:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .menu li.active {
-  background-color: #ffeccc;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
   color: #000;
 }
 
 .section-title {
   font-size: 14px;
   font-weight: 500;
-  margin: 10px 0 5px;
+  margin: 15px 0 5px;
   color: #fff;
+  user-select: none;
 }
-
 
 .main-content {
   flex: 1;
   padding: 40px;
+  overflow-y: auto;
 }
 
 .main-content h1 {
@@ -106,15 +97,73 @@ body, html {
   margin-bottom: 10px;
 }
 
+.top-bar {
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 30px auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 45px 12px 20px;
+  font-size: 18px;
+  border-radius: 35px;
+  border: 1px solid #ccc;
+  outline: none;
+  height: 50px;
+  box-shadow: 0 0 5px #ccc;
+  transition: box-shadow 0.3s;
+}
+
+.search-input:focus {
+  box-shadow: 0 0 8px purple;
+  border-color: purple;
+}
+
+.send-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: purple;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .upload-box {
   background-color: #fde0c8;
   border: 2px dashed #ccc;
-  padding: 50px;
+  padding: 70px;
   margin-top: 30px;
   text-align: center;
   border-radius: 12px;
   cursor: pointer;
   position: relative;
+  width: 65%;
+  gap: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+  transition: border-color 0.3s;
+}
+
+.upload-box:hover {
+  border-color: purple;
+  background-color: #fef2dc;
 }
 
 .upload-box img {
@@ -122,35 +171,42 @@ body, html {
   margin-bottom: 10px;
 }
 
-.upload-box small {
-  display: block;
-  margin-top: 10px;
-  color: #666;
-}
-
-.restartBtn {
-  margin-top: 30px;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-/* Hide element by default */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-/* Loader wrapper */
+#section-new {
+  justify-content: center;
+  height: 70vh; 
+  text-align: center;
+}
+
 #loader {
   text-align: center;
   margin-top: 30px;
 }
 
-/* GIF size */
 .loading-gif {
   width: 50px;
   height: 50px;
-  float:right;  }
+}
+
+.loader-animation {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #e90303;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+  margin: auto;
+}
+
+@keyframes spin { 
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

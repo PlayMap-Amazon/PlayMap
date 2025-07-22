@@ -1,141 +1,108 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./UploadDoc.module.css";
+import UploadBox from "./UploadBox";
+import Sidebar from "./Sidebar";
+import Section from "./Section";
+import HistoryList from "./HistoryList";
+import { initIcons } from "../../icons";
+
 
 const UploadDoc = () => {
-  const fileInputRef = useRef(null);
+  const [activeSection, setActiveSection] = useState("new");
   const [loading, setLoading] = useState(false);
+  const [history, setHistory] = useState([]);
 
-  // Handle and process the file
   const handleFile = (file) => {
     if (!file) return;
 
     if (file.size <= 10 * 1024 * 1024) {
       setLoading(true);
-        
-      // Simulate loading
+
       setTimeout(() => {
         setLoading(false);
         alert(`File "${file.name}" uploaded and processed!`);
+        setHistory((prev) => [...prev, file.name]);
       }, 2000);
     } else {
       alert("File too large or invalid type.");
     }
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    const file = e.dataTransfer.files[0];
-    handleFile(file);
-  };
-
-  const handleDragOver = (e) => {
-    e.preventDefault();
-  };
-
-  const handleClick = () => {
-    fileInputRef.current.click();
-  };
-
-  const handleChange = (e) => {
-    const file = e.target.files[0];
-    handleFile(file);
-  };
-
-  const handleRestart = () => {
-    fileInputRef.current.value = null;
-    alert("Restarted");
-  };
+  useEffect(() => {
+    initIcons();
+  }, [activeSection]);
 
   return (
     <div className={styles.container}>
-        <aside className={styles.sidebar}>
-            <div className={styles["logo-box"]}>
-                <img src="logo.png" className={styles.logo} alt="PlayMap logo" />
-            </div>
-            <h1 className={styles["brand-name"]}>PlayMap</h1>
+      <Sidebar active={activeSection} setActive={setActiveSection} history={history} />
+      <main className={styles["main-content"]}>
+        <div className={styles["top-bar"]}>
+          <h1 className={styles["brand-name"]}>PlayMap</h1>
+        </div>
 
-            <nav>
-                <ul className={styles.menu}>
-                    <li>
-                    <i data-lucide="message-square"></i> New Topic
-                    </li>
-                </ul>
-
-                <p className={styles["section-title"]}>Summarize PDF/Doc</p>
-                <ul className={styles.menu}>
-                    <li className={styles.active}>
-                        <i data-lucide="file-text"></i> PDF
-                    </li>
-                    <li>
-                        <i data-lucide="file"></i> Document
-                    </li>
-                    <li>
-                        <i data-lucide="image"></i> Images
-                    </li>
-                    <li>
-                        <i data-lucide="file-ppt"></i> Slides
-                    </li>
-                </ul>
-
-                <p className={styles["section-title"]}>History</p>
-                <ul className={styles.menu}>
-                    <li>
-                        <i data-lucide="flame"></i> Volcanos
-                    </li>
-                    <li>
-                        <i data-lucide="atom"></i> Periodic Table
-                    </li>
-                </ul>
-            </nav>
-        </aside>
-
-        <main className={styles["main-content"]}>
-            <h1 style={{ textAlign: "center" }}>PDF Summarizer</h1>
-            <p style={{ textAlign: "center" }}>
-                Extract key information and insights from lengthy PDFs.
-            </p>
-
-            <div
-            className={styles["upload-box"]}
-            onClick={handleClick}
-            onDrop={handleDrop}
-            onDragOver={handleDragOver}
-            >
-                <img
-                    src="https://img.icons8.com/ios/50/upload.png"
-                    alt="Upload Icon"
-                />
-                <p>Drag a file here or click to upload</p>
-                <small>
-                    Accepted: PDF, Word, Markdown, Text | Max: 10MB
-                </small>
+        <div className={styles["summarizer-wrapper"]}>
+          {activeSection === "new" && (
+            <Section title="Summarizer" description="Pick a topic you want to learn.">
+              <div className={styles["search-bar"]}>
                 <input
-                    type="file"
-                    accept=".pdf,.docx,.md,.txt"
-                    ref={fileInputRef}
-                    onChange={handleChange}
-                    hidden
+                  type="text"
+                  id="searchInput"
+                  placeholder="Enter a topic name..."
+                  className={styles["search-input"]}
                 />
-            </div>
-            <div>Click or drop your file here</div>
-            <button
-                className={styles.restartBtn}
-                onClick={handleRestart}
-            >
-                Restart
-            </button>
+                <i data-lucide="send" className={styles["send-icon"]}></i>
+              </div>
+            </Section>
+          )}
 
-            {loading && (
-                <div className={styles.loader}>
-                    <img
-                    src="loading.gif"
-                    alt="Loading..."
-                    className={styles["loading-gif"]}
-                    />
-                    <p>Processing your file...</p>
-                </div>
-            )}
-        </main>
+          {activeSection === "pdf" && (
+            <Section title="PDF Summarizer" description="Extract key information and insights from lengthy PDFs.">
+              <UploadBox
+                accept=".pdf"
+                label="Drag a PDF here or click to upload"
+                onFileSelect={handleFile}
+              />
+            </Section>
+          )}
+
+          {activeSection === "document" && (
+            <Section title="Document Summarizer" description="Upload Word or text files for quick summarization.">
+              <UploadBox
+                accept=".docx,.txt,.md"
+                label="Drag a DOC or TXT here or click to upload"
+                onFileSelect={handleFile}
+              />
+            </Section>
+          )}
+
+          {activeSection === "images" && (
+            <Section title="Image Summarizer" description="Upload screenshots or photos to extract key data.">
+              <UploadBox
+                accept="image/*"
+                label="Drag an image here or click to upload"
+                onFileSelect={handleFile}
+              />
+            </Section>
+          )}
+
+          {activeSection === "slides" && (
+            <Section title="Slides Summarizer" description="Upload presentations for fast summarization.">
+              <UploadBox
+                accept=".ppt,.pptx"
+                label="Drag a PPT or PDF slide here or click to upload"
+                onFileSelect={handleFile}
+              />
+            </Section>
+          )}
+        </div>
+
+        {loading && (
+          <div className={styles.loader}>
+            <div className={styles["loader-animation"]}></div>
+            <p>Processing your file...</p>
+          </div>
+        )}
+      </main>
     </div>
   );
 };
