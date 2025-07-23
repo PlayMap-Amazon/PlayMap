@@ -32,7 +32,7 @@ export default function ChatBot() {
         </div>
         <div className={styles.botContainer}>
           <div className={styles.imageContainer}>
-            <img className={styles.botImage} src="bot.png" alt="bot image" />
+            <img className={styles.botImage} src="bot.png" alt="bot" />
           </div>
           <div className={styles.bubbleContainer}>
             Hey There 👋 <br /> How can I help you today?

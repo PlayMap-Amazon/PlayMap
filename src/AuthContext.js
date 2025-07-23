@@ -6,10 +6,12 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const url = process.env.REACT_APP_API_URL;
+
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const profile = await fetch('https://subtle-chimp-equally.ngrok-free.app/profile', {
+        const profile = await fetch(`${url}/profile`, {
           method: 'GET',
           credentials: 'include',
           headers: {
@@ -31,13 +33,12 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
-
     fetchProfile();
-  }, []);
+  }, [url]);
 
   const register = async (data) => {
     try {
-        const res = await fetch('https://subtle-chimp-equally.ngrok-free.app/auth/register', {
+        const res = await fetch(`${url}/auth/register`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -62,7 +63,7 @@ export const AuthProvider = ({ children }) => {
   
   const login = async (data) => {
     try {
-        const res = await fetch('https://subtle-chimp-equally.ngrok-free.app/auth/login', {
+        const res = await fetch(`${url}/auth/login`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -86,7 +87,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await fetch('https://subtle-chimp-equally.ngrok-free.app/auth/logout', {
+    await fetch(`${url}/auth/logout`, {
       method: 'POST',
       headers: {
         'ngrok-skip-browser-warning': 'true'

@@ -91,13 +91,15 @@ function LoginPage() {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleRegister} className={styles.loginForm}>
-                  <h2 className={styles.panelTitle} style={{marginBottom: "-20px"}}>Welcome back to PlayMap! 🎮</h2>
-                  <p className={styles.panelDesc}>Let's create your account and start your learning adventure!</p>
-                  <input type="email" value={formData.email} placeholder="Email" onChange={handleChange}/>
-                  <input type="password" value={formData.password} placeholder="Password" onChange={handleChange}/>
-                  <button type="submit" className={styles.submitButton}>Create Account</button>
-                </form>
+                <div className={styles.loginDiv}>
+                  <form onSubmit={handleRegister} className={styles.loginForm}>
+                    <h2 className={styles.panelTitle}>Welcome back to PlayMap! 🎮</h2>
+                    <p className={styles.panelDesc}>Let's create your account and start your learning adventure!</p>
+                    <input type="email" value={formData.email} placeholder="Email" onChange={handleChange}/>
+                    <input type="password" value={formData.password} placeholder="Password" onChange={handleChange}/>
+                    <button type="submit" className={styles.submitButton}>Create Account</button>
+                  </form>
+                </div>
               )
             }
           </div>
