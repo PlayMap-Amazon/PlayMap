@@ -1,0 +1,85 @@
+.calendarWrapper {
+  width: 100%;
+  max-width: 360px;
+  background: #fff1d6;
+  border-radius: 12px;
+  border: 2px solid #FB7E25;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.header h3 {
+  margin: 0;
+  color: #2C64A7;
+}
+
+.header button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #2C64A7;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.header button:hover {
+  color: #FB7E25;
+}
+
+.dayNames {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #4A90E2;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.day {
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  line-height: 35px;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.current {
+  background-color: #F5E9E3;
+  color: #333;
+}
+
+.otherMonth {
+  background-color: #e9e2da;
+  color: #aaa;
+}
+
+.active {
+  background-color: #FB7E25 !important;
+  color: white;
+  font-weight: bold;
+}
+
+.today {
+  outline: 2px solid #4A90E2;
+  outline-offset: -2px;
+}

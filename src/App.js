@@ -8,6 +8,7 @@ import { AuthProvider } from './AuthContext';
 import DashboardPage from './modules/Dashboard/DashboardPage';
 import ChatBot from './modules/ChatBot/ChatBot.jsx';
 import UploadDoc from './modules/UploadDoc/UploadDoc.jsx';
+import ProfilePage from './modules/Profile/ProfilePage.jsx';
 
 const cards = [
   {
