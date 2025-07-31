@@ -1,0 +1,46 @@
+.leaderBoardContainer {
+  background-color:#fff1d6;
+  border: 2px solid #fb7e25;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+  min-width: 40%;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #2C64A7;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 12px 8px;
+  text-align: center;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.table tr:hover {
+  background-color: #ffe7d6;
+}
+
+.avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid #fb7e25;
+  object-fit: cover;
+}

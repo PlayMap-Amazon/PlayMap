@@ -15,35 +15,44 @@ export default function ChatBot() {
 
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    if (!message.trim()) return;
+  if (!message.trim()) return;
 
-    const userMessage = { sender: "user", text: message };
-    if (!firstInteraction) setFirstInteraction(true);
-    setMessages((prev) => [...prev, userMessage]);
-    setMessage("");
+  const userMessage = { sender: "user", text: message };
+  setMessages((prev) => [...prev, userMessage]);
+  setMessage("");
 
+  try {
+    const response = await fetch("http://localhost:3000/chat/rag", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ question: message }),
+    });
 
-    setTimeout(() => {
-      const botMessage = {
-        sender: "bot",
-        text: generateBotResponse(message)
-      };
-      setMessages((prev) => [...prev, botMessage]);
-    }, 1000); 
-  };
+    const data = await response.json();
 
-  const generateBotResponse = (input) => {
-    if (input.toLowerCase().includes("help")) {
-      return "I'm here to help you. What are you struggling with?";
-    }
-    if (input.toLowerCase().includes("joke")) {
-      return "Why did the computer go to therapy? Because it had too many 'bytes' of trauma!";
-    }
-    return "Hmm, let me think... 🤔 That's an interesting one!";
-  };
+    const botMessage = {
+      sender: "bot",
+      text: data.answer || "Oops! I didn't understand that.",
+    };
+
+    setMessages((prev) => [...prev, botMessage]);
+  } catch (error) {
+    console.error("Error fetching response from RAG:", error);
+
+    const botMessage = {
+      sender: "bot",
+      text: "Sorry, something went wrong while thinking",
+    };
+
+    setMessages((prev) => [...prev, botMessage]);
+  }
+};
+
 
 
   return (

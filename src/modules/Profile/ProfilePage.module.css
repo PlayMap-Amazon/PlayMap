@@ -10,7 +10,7 @@
 
 .profilePage{
     margin-top: 20px;
-    width: 60%;
+    width: 63%;
 }
 
 .profileContainer{
@@ -36,4 +36,13 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: #333;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 63%;
 }

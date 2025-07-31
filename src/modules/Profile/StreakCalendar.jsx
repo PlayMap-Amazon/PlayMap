@@ -18,7 +18,7 @@ const formatDate = (date) => {
 };
 
 
-export default function StreakCalendar({ streakDates = [] }) {
+export default function StreakCalendar({ studyDates = [] }) {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
@@ -55,7 +55,7 @@ export default function StreakCalendar({ streakDates = [] }) {
       const formatted = formatDate(date);
 
       const isCurrentMonth = date.getMonth() === currentMonth;
-      const isStreak = streakDates.includes(formatted);
+      const isStreak = studyDates.includes(formatted);
       const isToday = formatDate(date) === formatDate(new Date());
 
 

@@ -1,13 +1,15 @@
 .calendarWrapper {
-  width: 100%;
-  max-width: 360px;
-  background: #fff1d6;
-  border-radius: 12px;
-  border: 2px solid #FB7E25;
-  padding: 20px;
-  font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 295px;               
+    height: 350px;
+    background-color: #fff1d6;
+    border-radius: 12px;
+    border: 2px solid #FB7E25;
+    padding: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-sizing: border-box;
 }
+
 
 .header {
   display: flex;

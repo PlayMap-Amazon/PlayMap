@@ -3,36 +3,28 @@ import React, { useState } from "react";
 import StreakCalendar from "./StreakCalendar.jsx";
 import styles from "./StreakSection.module.css";
 
-export default function StreakSection() {
+export default function StreakSection({studyDates, streak}) {
+
+    const getFlameIcon = () => {
+        if (streak === 0) return "streak1.png";
+        if (streak <= 3) return "streak2.png";
+        if (streak <= 7) return "streak3.png";
+        if (streak <= 14) return "streak4.png";
+        return "streak4.png";
+    };
+
+
     return(
         <div className={styles.streakSection}>
             <StreakCalendar
-                streakDates={[
-                    "2025-07-17",
-                    "2025-07-18",
-                    "2025-07-22",
-                    "2025-07-23",
-                    "2025-07-24",
-                    "2025-07-25"
-                ]}
+                studyDates={studyDates}
             />
             <div className={styles.streakContainer}>
-                <h3 className={styles.streakLable}>Max Streak</h3>
+                <h3 className={styles.streakLabel}>Current Streak</h3>
                 <div className={styles.flameWrapper}>
-                    <img className={styles.flameIcon} src="streak4.png" alt="Flame Icon" />
-                    <span className={styles.streakValue}>9</span>
+                    <img className={styles.flameIcon} src={getFlameIcon()} alt="Flame Icon" />
+                    <span className={styles.streakValue}>{streak}</span>
                 </div>
-                <h3>days</h3>
-            </div>
-
-            <div className={styles.streakContainer}>
-                <h3 className={styles.streakLable}>Current Streak</h3>
-                <div className={styles.flameWrapper}>
-                    <img className={styles.flameIcon} src="streak2.png" alt="Flame Icon" />
-                    <span className={styles.streakValue}>4</span>
-                </div>
-                <h3 >days</h3>
-                <h3 className={styles.record}>Login 5 more days <br></br>to beat your record!</h3>
             </div>
         </div>
     )
