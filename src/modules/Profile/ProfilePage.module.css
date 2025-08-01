@@ -22,6 +22,7 @@
     width: 100%;
     align-items: center;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .profilePicture {
@@ -36,6 +37,18 @@
     font-size: 1.5rem;
     font-weight: 600;
     color: #333;
+}
+
+.iconsContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+    transform: scale(0.7);
+    position: absolute;
+    right: 0px;
 }
 
 .row{

@@ -2,20 +2,21 @@ import styles from "./ProfilePage.module.css";
 import common_styles from "../../App.module.css";
 import TopBar from "../Topbar/Topbar";
 import { Link } from 'react-router-dom';
-import StreakSection from "./StreakSection";
+import CurrentStreak from "./CurrentStreak.jsx";
 import LeaderBoard from "./LeaderBoard";
 import LevelSection from "./LevelSection";
 import ProfileInfo from "./ProfileInfo";
 import StudyTimeSection from "./StudyTimeSection";
+import StreakCalendar from "./StreakCalendar.jsx";
 
 export default function ProfilePage() {
 
     const user = {
         username: "Emma Smith",
         experience: 320,
-        level: 11,
+        level: 7,
         streak: 3,
-        institution: "University of Example",
+        institution: "Massachusetts Institute of Technology",
         studySessions: [
             { date: "2025-07-17", hours: 1 },
             { date: "2025-07-18", hours: 2 },
@@ -81,22 +82,25 @@ export default function ProfilePage() {
                     <div className={styles.profileInfo}>
                         <ProfileInfo user = {user}/>
                     </div>
+                    <div className={styles.iconsContainer}>
+                        <CurrentStreak 
+                            streak={user.streak}
+                            studyDates={user.studySessions.map(session => session.date)}
+                        />
+                        <LevelSection 
+                            level={user.level}
+                            currentExp={user.experience}
+                            nextLevelExp={nextLevelExp}
+                        />
+                    </div>
                 </div>
-                
             </div>
 
             <div className={styles.row}>
-                <StreakSection 
-                    streak={user.streak}
+                <StreakCalendar
                     studyDates={user.studySessions.map(session => session.date)}
                 />
                 <StudyTimeSection user={user}/>
-
-                <LevelSection 
-                    level={user.level}
-                    currentExp={user.experience}
-                    nextLevelExp={nextLevelExp}
-                />
             </div>
             <LeaderBoard friends={leaderboardUsers}/> 
         </div>

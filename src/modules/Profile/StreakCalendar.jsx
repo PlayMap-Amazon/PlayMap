@@ -80,6 +80,7 @@ export default function StreakCalendar({ studyDates = [] }) {
 
   return (
     <div className={styles.calendarWrapper}>
+      <h3 className={styles.title}>Streak Calendar</h3>
       <div className={styles.header}>
         <button onClick={prevMonth}>←</button>
         <h3>{monthNames[currentMonth]} {currentYear}</h3>

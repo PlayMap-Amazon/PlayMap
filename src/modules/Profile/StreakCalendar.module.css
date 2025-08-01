@@ -1,13 +1,19 @@
 .calendarWrapper {
-    width: 295px;               
-    height: 350px;
-    background-color: #fff1d6;
-    border-radius: 12px;
-    border: 2px solid #FB7E25;
-    padding: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    box-sizing: border-box;
+  width: 295px;               
+  background-color: #fff1d6;
+  border-radius: 12px;
+  border: 2px solid #FB7E25;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 20px;
+  color: #31373f;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 
