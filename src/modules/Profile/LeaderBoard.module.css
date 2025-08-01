@@ -43,4 +43,34 @@
   border-radius: 50%;
   border: 2px solid #fb7e25;
   object-fit: cover;
+  margin-left: -10px;
+}
+
+.rankCell {
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.medal {
+  margin-left: 20px;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.rank {
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  line-height: 36px;
+  text-align: center;
+}
+
+.normal {
+  color: #444;
+  background-color: transparent;
 }

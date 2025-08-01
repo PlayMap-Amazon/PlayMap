@@ -103,19 +103,21 @@ export default function ProfilePage() {
                 <StreakCalendar
                     studyDates={user.studySessions.map(session => session.date)}
                 />
-                <StudyTimeSection user={user}/>
-            </div>
-            <button className={styles.leaderboardButton} onClick={() => setShowLeaderboard(true)}>
-                Show Leaderboard
-            </button>
-            {showLeaderboard && (
-            <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
-                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                <button className={styles.closeButton} onClick={() => setShowLeaderboard(false)}>✕</button>
-                <LeaderBoard friends={leaderboardUsers} />
+                <div className={styles.studyTime}>
+                    <StudyTimeSection user={user}/>
+                    <button className={styles.leaderboardButton} onClick={() => setShowLeaderboard(true)}>
+                        Show Leaderboard
+                    </button>
+                    {showLeaderboard && (
+                    <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
+                        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                        <button className={styles.closeButton} onClick={() => setShowLeaderboard(false)}>✕</button>
+                        <LeaderBoard friends={leaderboardUsers} />
+                        </div>
+                    </div>
+                    )}
                 </div>
             </div>
-            )}
         </div>
     );
 }
