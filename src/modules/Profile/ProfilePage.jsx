@@ -8,8 +8,11 @@ import LevelSection from "./LevelSection";
 import ProfileInfo from "./ProfileInfo";
 import StudyTimeSection from "./StudyTimeSection";
 import StreakCalendar from "./StreakCalendar.jsx";
+import { useState } from "react";
 
 export default function ProfilePage() {
+
+    const [showLeaderboard, setShowLeaderboard] = useState(false);
 
     const user = {
         username: "Emma Smith",
@@ -102,7 +105,17 @@ export default function ProfilePage() {
                 />
                 <StudyTimeSection user={user}/>
             </div>
-            <LeaderBoard friends={leaderboardUsers}/> 
+            <button className={styles.leaderboardButton} onClick={() => setShowLeaderboard(true)}>
+                Show Leaderboard
+            </button>
+            {showLeaderboard && (
+            <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
+                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                <button className={styles.closeButton} onClick={() => setShowLeaderboard(false)}>✕</button>
+                <LeaderBoard friends={leaderboardUsers} />
+                </div>
+            </div>
+            )}
         </div>
     );
 }
