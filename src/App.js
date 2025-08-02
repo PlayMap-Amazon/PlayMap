@@ -38,7 +38,7 @@ const cards = [
 ]
 
 const router = createBrowserRouter([
-  { path: '/', element: <ProfilePage /> },
+  { path: '/', element: <MainPage /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/dashboard', element: <DashboardPage /> },
   { path: '/uploaddoc', element: <UploadDoc /> },

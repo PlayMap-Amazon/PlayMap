@@ -16,7 +16,6 @@
   margin-bottom: 10px;
 }
 
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -54,26 +53,30 @@
 .calendar {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .week {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
 }
 
 .day {
   aspect-ratio: 1 / 1;
-  text-align: center;
-  line-height: 35px;
-  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
+  border-radius: 6px;
   transition: background-color 0.2s ease;
+  user-select: none;
 }
 
 .current {
-  background-color: #F5E9E3;
+  background-color: #ffffff;
   color: #333;
+  
 }
 
 .otherMonth {
@@ -90,4 +93,21 @@
 .today {
   outline: 2px solid #4A90E2;
   outline-offset: -2px;
+}
+
+
+.dayNames > div {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #4A90E2;
+  user-select: none;
+  font-size: 14px;
+}
+.day:empty::before {
+  content: "\00a0";
+  display: block;
+  height: 100%;
 }

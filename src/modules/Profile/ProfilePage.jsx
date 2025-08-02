@@ -9,6 +9,9 @@ import ProfileInfo from "./ProfileInfo";
 import StudyTimeSection from "./StudyTimeSection";
 import StreakCalendar from "./StreakCalendar.jsx";
 import { useState } from "react";
+import ExamCalendar from "./ExamCalendar.jsx";
+import TaskTracker from "./TaskTracker.jsx";
+import StudyBuddy from "./StudyBuddy.jsx";
 
 export default function ProfilePage() {
 
@@ -111,12 +114,17 @@ export default function ProfilePage() {
                     {showLeaderboard && (
                     <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
                         <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <button className={styles.closeButton} onClick={() => setShowLeaderboard(false)}>✕</button>
-                        <LeaderBoard friends={leaderboardUsers} />
+                            <button className={styles.closeButton} onClick={() => setShowLeaderboard(false)}>✕</button>
+                            <LeaderBoard friends={leaderboardUsers} />
                         </div>
                     </div>
                     )}
                 </div>
+                <StudyBuddy />
+            </div>
+            <div className={styles.row}>
+                <TaskTracker />
+                <ExamCalendar />
             </div>
         </div>
     );
