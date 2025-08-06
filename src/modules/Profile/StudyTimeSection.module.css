@@ -5,16 +5,16 @@
     padding: 20px;
     background-color: #fff1d6;
     border-radius: 10px;
-    width: 90%;
+    width: 100%;
     height: 350px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border: 2px solid #f0c078;
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .title {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #2C64A7;
+    font-size: 1.7rem;
+    font-weight: 750;
+    color: #31373f;
     margin-bottom: 8px;
 }
 
@@ -30,7 +30,7 @@
     grid-template-columns: 1fr auto; 
     align-items: center;
     width: 100%;
-    padding: 10px 0;
+    padding: 5px 0;
     border-top: 1px solid #e2e8f0;
     font-size: 0.9rem;
 }

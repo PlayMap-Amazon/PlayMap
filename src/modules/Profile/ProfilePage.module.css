@@ -58,11 +58,10 @@
   flex-direction: row;
   justify-content: space-between;
   margin: 10px;
-  gap:20px;
   width: 63%;
 }
 
-.leaderboardButton {
+.button {
   padding: 8px 16px;
   width: 90%;
   background-color: #2C64A7;
@@ -75,7 +74,7 @@
   margin-top: 16px;
 }
 
-.leaderboardButton:hover {
+.button:hover {
   background-color: #4a90e2;
 }
 
@@ -116,11 +115,12 @@
   color: #333;
 }
 
-.studyTime {
+.section {
   display: flex;
+  flex: 0 0 calc((100% - 30px) / 4);  
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 12px;
-  max-width: 375PX;
 }
+

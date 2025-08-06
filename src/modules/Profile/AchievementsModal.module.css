@@ -1,0 +1,124 @@
+.achievementsModalWrapper {
+  display: flex;
+  width: 100%;
+  max-height: 80vh;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar {
+  width: 25%;
+  min-width: 200px;
+  background-color: #f9f1e7;
+  padding: 20px;
+  box-sizing: border-box;
+  border-right: 2px solid #fb7e25;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 1.3rem;
+  color: #333;
+}
+
+.sidebar p {
+  margin: 10px 0;
+  color: #444;
+}
+
+.mainContent {
+  flex: 1;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tabs button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ddd;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.tabs button:hover {
+  background-color: #ccc;
+}
+
+.tabs .active {
+  background-color: #fb7e25;
+  color: white;
+}
+
+.achievementTable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.achievementRow {
+  display: flex;
+  align-items: center;
+  background-color: #fefefe;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 10px;
+  transition: opacity 0.3s;
+}
+
+.achievementRow.locked {
+  opacity: 0.5;
+}
+
+.imageCell img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+
+.infoCell {
+  flex: 1;
+  padding: 0 15px;
+}
+
+.title {
+  font-weight: bold;
+  color: #333;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.expCell {
+  min-width: 70px;
+  text-align: right;
+  font-weight: 600;
+  color: #fb7e25;
+}
+
+.percentSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sidebar .percent {
+  font-size: 1.7rem;
+  color: #fb7e25;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
