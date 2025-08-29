@@ -7,6 +7,22 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    if (process.env.NODE_ENV === 'development') {
+      setUser({
+        id: 'dev-1',
+        name: 'Dev User',
+        level: 5,
+        experience: 1200,
+        streak: 3,
+        studySessions: [{ date: '2025-08-28' }],
+        achievements: ['first-login','five-days-streak']
+      });
+      setLoading(false);
+      return; 
+    }
+
+    
     const fetchProfile = async () => {
       try {
         const profile = await fetch('https://subtle-chimp-equally.ngrok-free.app/profile', {
