@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './ProfileInfo.module.css';
 
 export default function ProfileInfo({ user }) {

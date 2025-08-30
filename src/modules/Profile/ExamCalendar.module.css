@@ -4,19 +4,21 @@
   min-height: 500px;
   max-width: 800px;
   margin: 0 auto;
-  background-color: #fff1d6;
-  border: 2px solid #FB7E25;
   border-radius: 10px;
   padding: 16px;
   font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
+  background: rgba(255, 196, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .examTitle {
   font-size: 20px;
   font-weight: bold;
-  color: #31373f;
+  color: #fff7f2;
   text-align: center;
   margin-bottom: 12px;
 }
@@ -70,7 +72,8 @@
 }
 
 .examDay {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.719);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 6px;
   min-height: 75px;
   padding: 4px;
@@ -84,6 +87,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+
 }
 
 .examDay:hover {
@@ -91,7 +95,7 @@
 }
 
 .examOtherMonth {
-  background-color: #f0f0f0;
+  background-color: #e9e2da;;
   color: #b0b0b0;
 }
 
@@ -140,15 +144,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+    backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .modalContent {
-  background: white;
+  background: rgba(0, 29, 107, 0.651);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
   padding: 20px 30px;
   border-radius: 10px;
   width: 90%;
   max-width: 400px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   animation: popIn 0.3s ease;
 }
 
@@ -212,8 +219,9 @@
 
 .examRight {
   flex: 1;
-  background-color: #f9f9fc;
-  border: 1px solid #ddd;
+  background: rgba(0, 81, 255, 0.644);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
   border-radius: 12px;
   padding: 1rem;
   overflow-y: auto;
@@ -224,7 +232,7 @@
 .examRight h4 {
   margin-bottom: 1rem;
   font-size: 1.2rem;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #cccccc;
   padding-bottom: 0.5rem;
 
 }
@@ -256,6 +264,6 @@
 }
 
 .noExams {
-  color: #888;
+  color: #8498b6;
   font-style: italic;
 }

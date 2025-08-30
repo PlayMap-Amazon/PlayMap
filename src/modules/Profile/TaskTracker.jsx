@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Portal from "./Portal.jsx";
 import styles from "./TaskTracker.module.css";
 
 export default function TaskTracker() {
@@ -103,41 +104,43 @@ export default function TaskTracker() {
         </ul>
 
     {showModal && (
-      <div className={styles.modalOverlay}>
-        <div className={styles.modalContent}>
-          <h3>Add New Task</h3>
-          <input
-            type="text"
-            placeholder="Task name"
-            value={taskName}
-            onChange={(e) => setTaskName(e.target.value)}
-          />
-          <input
-            type="date"
-            value={deadline}
-            onChange={(e) => setDeadline(e.target.value)}
-          />
-          <select
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
-          >
-            <option value="High">High Priority</option>
-            <option value="Medium">Medium Priority</option>
-            <option value="Low">Low Priority</option>
-          </select>
-          <div className={styles.modalButtons}>
-            <button
-              onClick={() => {
-                addTask();
-                setShowModal(false);
-              }}
+      <Portal>
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <h3>Add New Task</h3>
+            <input
+              type="text"
+              placeholder="Task name"
+              value={taskName}
+              onChange={(e) => setTaskName(e.target.value)}
+            />
+            <input
+              type="date"
+              value={deadline}
+              onChange={(e) => setDeadline(e.target.value)}
+            />
+            <select
+              value={priority}
+              onChange={(e) => setPriority(e.target.value)}
             >
-              Add
-            </button>
-            <button onClick={() => setShowModal(false)}>Cancel</button>
+              <option value="High">High Priority</option>
+              <option value="Medium">Medium Priority</option>
+              <option value="Low">Low Priority</option>
+            </select>
+            <div className={styles.modalButtons}>
+              <button
+                onClick={() => {
+                  addTask();
+                  setShowModal(false);
+                }}
+              >
+                Add
+              </button>
+              <button onClick={() => setShowModal(false)}>Cancel</button>
+            </div>
           </div>
         </div>
-      </div>
+      </Portal>
     )}
     </div>
   );

@@ -3,7 +3,6 @@
     align-items: center;
     padding: 20px;
     border-radius: 8px;
-
 }
 
 .profilePicture {
@@ -24,14 +23,14 @@
 .userName {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #2C64A7;
+    color: #fff7f2;
     margin: 0 0 8px 0;
 }
 
 .userInstitution {
     font-size: 1rem;
     font-weight: 500;
-    color: #e36b2d; 
+    color: #ffd7b7;
     margin: 0;
     opacity: 0.9;
 }

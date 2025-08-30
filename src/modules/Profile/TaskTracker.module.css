@@ -1,18 +1,20 @@
 .taskWrapper {
   flex: 1;
   width: 300px;
-  background-color: #fff1d6;
   border-radius: 12px;
-  border: 2px solid #FB7E25;
   padding: 20px;
   font-family: 'Segoe UI', sans-serif;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   margin-right: 10px;
+  background: rgba(255, 196, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .taskTitle {
   font-size: 20px;
-  color: #31373f;
+  color: #fff7f2;
   text-align: center;
   margin-bottom: 15px;
   font-weight: bold;
@@ -22,7 +24,7 @@
   display: flex;
   justify-content: flex-start;
   margin-bottom: 15px;
-  border-bottom: 2px solid #ff7037;
+  border-bottom: 2px solid #b84900e5;
 }
 
 .tabs button {
@@ -40,7 +42,7 @@
 }
 
 .activeTab {
-  background-color: #ff7037;
+  background-color: #b84900e5;
   color: white;
   border-bottom: none; 
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
@@ -50,8 +52,8 @@
 
 
 .inactiveTab {
-  background-color: #ffa366;
-  border-bottom: 4px solid #ff7037;
+  background-color: #f0701bd0;
+  border-bottom: 4px  #f0701bd0;
   color: white;
 }
 
@@ -74,7 +76,9 @@
 
 .taskForm button {
   margin-top: 8px;
-  background: #2C64A7;
+  background: rgba(0, 81, 255, 0.644);
+  border: 1px solid var(--glass-border);  
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
   color: white;
   border: none;
   padding: 8px;
@@ -87,7 +91,7 @@
 }
 
 .taskForm button:hover {
-  background-color: #4a90e2;
+  background-color: #003168e1;
 }
 
 .taskList {
@@ -104,8 +108,9 @@
 .taskList li {
   padding: 8px;
   margin-bottom: 6px;
-  background: #fff;
-  border: 1px solid #ddd;
+  background: rgba(255, 174, 0, 0.555);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -115,7 +120,9 @@
 }
 
 .taskList li:hover {
-  background-color: #f0f8ff;
+  background: rgba(255, 174, 0, 0.705);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
 }
 
 .taskList input[type="checkbox"] {
@@ -185,7 +192,7 @@
 }
 
 .openModalButton:hover {
-  background-color: #4a90e2;
+  background-color: #003168e1;
 }
 
 .modalOverlay {
@@ -198,12 +205,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 2000;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
 
 .modalContent {
-  background-color: #fff1d6;
-  border: 2px solid #ff7037;
+  background: rgba(0, 29, 107, 0.651);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
   padding: 20px;
   border-radius: 12px;
   width: 300px;
@@ -256,13 +266,10 @@
   background-color: #888;
 }
 
-
-
 .taskItem {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  background: #fff;
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #eee;

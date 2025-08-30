@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import styles from "./StreakCalendar.module.css";
-import { Link } from 'react-router-dom';
 
 
 const getDaysInMonth = (month, year) => new Date(year, month + 1, 0).getDate();

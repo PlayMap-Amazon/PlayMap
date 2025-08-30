@@ -1,7 +1,4 @@
 import styles from "./ProfilePage.module.css";
-import common_styles from "../../App.module.css";
-import TopBar from "../Topbar/Topbar";
-import { Link } from 'react-router-dom';
 import CurrentStreak from "./CurrentStreak.jsx";
 import LeaderBoard from "./LeaderBoard";
 import LevelSection from "./LevelSection";
@@ -15,6 +12,9 @@ import StudyBuddy from "./StudyBuddy.jsx";
 import AchievementsSection from "./AchievementsSection.jsx";
 import AchievementsModal from "./AchievementsModal.jsx";
 import Top3Section from "./Top3Section.jsx";
+import FloatingParticles from "../PlayMapDashboard/FloatingParticles.jsx";
+import ChatBotButton from "../ChatBot/ChatBotButton.jsx";
+import Portal from "./Portal.jsx";
 
 export default function ProfilePage() {
 
@@ -127,21 +127,10 @@ export default function ProfilePage() {
     const nextLevelExp = getRequiredExp(user.level + 1);
 
     return (
+        
         <div className={styles.body}>
-            <TopBar>
-                <Link to="/">
-                <button
-                    className={common_styles.customButton}
-                    style={{
-                    color: '#C06D3E',
-                    backgroundColor: '#F5E9E3',
-                    borderColor: '#FB7E25',
-                    }}
-                >
-                    Home
-                </button>
-                </Link>
-            </TopBar>
+            <FloatingParticles />
+            <ChatBotButton />
             <div className={styles.profilePage}>
                 <div className={styles.profileContainer}>
                     <div className={styles.profileInfo}>
@@ -171,12 +160,13 @@ export default function ProfilePage() {
                         Show Leaderboard
                     </button>
                     {showLeaderboard && (
-                    <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
-                        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                            <button className={styles.closeButton} onClick={() => setShowLeaderboard(false)}>✕</button>
-                            <LeaderBoard friends={leaderboardUsers} />
-                        </div>
-                    </div>
+                        <Portal>
+                            <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
+                                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                                    <LeaderBoard friends={leaderboardUsers}  onClose={() => setShowLeaderboard(false)}/>
+                                </div>
+                            </div>
+                        </Portal>
                     )}
                 </div>
                 <div className={styles.section}>
@@ -187,8 +177,10 @@ export default function ProfilePage() {
                     {showAchievements && (
                     <div className={styles.modalOverlay} onClick={() => setShowAchievements(false)}>
                         <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                            <button className={styles.closeButton} onClick={() => setShowAchievements(false)}>✕</button>
-                            <AchievementsModal achievements={user.achievements}/>
+                            <AchievementsModal 
+                                achievements={user.achievements} 
+                                onClose={() => setShowAchievements(false)} 
+                            />
                         </div>
                     </div>
                     )}

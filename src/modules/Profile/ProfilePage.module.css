@@ -1,8 +1,27 @@
+:root {
+  --primary-orange: #ff6f00;
+  --dark-orange: #e65100;
+  --orange: #ff6f00;
+  --light-orange: #ff8f00;
+  --accent-orange: #ff9800;
+  --dark: #0A0E27;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --white: #FFFFFF;
+}
+
+body{
+  background: radial-gradient(circle at 20% 80%, var(--primary-orange) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, var(--accent-orange) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, var(--dark-orange) 0%, transparent 50%),
+              linear-gradient(135deg, #0A0E27 0%, rgba(255, 111, 0, 0.06) 100%);
+}
+
 .body {
   min-height: 100vh;
+  width: 100%;
   overflow-y: auto;
   margin: 0;
-  background: linear-gradient(135deg, #ff9800 0%, #e96417 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,13 +36,17 @@
 .profileContainer{
   display: flex;
   gap: 20px;
-  background-color: #fff1d6;
   border-radius: 15px;
   padding: 20px;
   width: 100%;
   align-items: center;
   margin-bottom: 20px;
   position: relative;
+  background: rgba(255, 196, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .profilePicture {
@@ -64,9 +87,10 @@
 .button {
   padding: 8px 16px;
   width: 90%;
-  background-color: #2C64A7;
+  background: rgba(0, 81, 255, 0.644);
+  border: 1px solid var(--glass-border);  
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
   color: rgb(255, 250, 246);
-  border: none;
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
@@ -75,7 +99,7 @@
 }
 
 .button:hover {
-  background-color: #4a90e2;
+  background-color: #003168e1;
 }
 
 .modalOverlay {
@@ -93,14 +117,12 @@
 }
 
 .modalContent {
-  background-color: #fff1d6;
   border-radius: 12px;
   padding: 20px;
   max-width: 90%;
   max-height: 90%;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   width: 55vw;
 }
 
@@ -122,5 +144,10 @@
   align-items: center;
   justify-content: center;
   border-radius: 12px;
+}
+
+
+.section{
+  z-index: 1;
 }
 

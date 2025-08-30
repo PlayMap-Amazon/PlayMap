@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './StudyTimeSection.module.css';
 import { format, parseISO, isYesterday } from "date-fns";
 

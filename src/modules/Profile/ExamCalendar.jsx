@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "./ExamCalendar.module.css";
+import Portal from "./Portal";
 
 export default function ExamCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -121,31 +122,33 @@ export default function ExamCalendar() {
         </div>
       </div>
       {showModal && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <h4>Add Exam on {selectedDay?.toDateString()}</h4>
-            <input
-              type="text"
-              placeholder="Exam name"
-              value={newExamName}
-              onChange={(e) => setNewExamName(e.target.value)}
-            />
-            <input
-              type="time"
-              value={newExamHour}
-              onChange={(e) => setNewExamHour(e.target.value)}
-            />
-            <div className={styles.modalButtons}>
-              <button onClick={() => {
-                handleAddExam();
-                setShowModal(false);
-              }}>
-                Add
-              </button>
-              <button onClick={() => setShowModal(false)}>Cancel</button>
+        <Portal>
+          <div className={styles.modalOverlay}>
+            <div className={styles.modalContent}>
+              <h4>Add Exam on {selectedDay?.toDateString()}</h4>
+              <input
+                type="text"
+                placeholder="Exam name"
+                value={newExamName}
+                onChange={(e) => setNewExamName(e.target.value)}
+              />
+              <input
+                type="time"
+                value={newExamHour}
+                onChange={(e) => setNewExamHour(e.target.value)}
+              />
+              <div className={styles.modalButtons}>
+                <button onClick={() => {
+                  handleAddExam();
+                  setShowModal(false);
+                }}>
+                  Add
+                </button>
+                <button onClick={() => setShowModal(false)}>Cancel</button>
+              </div>
             </div>
           </div>
-        </div>
+        </Portal>
       )}
     </div>
   );

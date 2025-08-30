@@ -1,8 +1,6 @@
 import styles from "./StudyBuddy.module.css";
 
 export default function StudyBuddy() {
-
-
     return (
         <div className={styles.studyBuddyWrapper}>
             <div className={styles.title}>Study Buddy</div>
@@ -10,7 +8,5 @@ export default function StudyBuddy() {
                 <img src="study_buddy.png" alt="Study Buddy Icon" className={styles.icon} />
             </div>
         </div>
-
     );
-
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./AchievementsModal.module.css";
 
-export default function AchievementsModal({ achievements = [] }) {
+export default function AchievementsModal({ achievements = [], onClose }) {
     const [activeTab, setActiveTab] = useState("all");
 
     const completed = achievements.filter(a => a.unlocked);
@@ -20,11 +20,32 @@ export default function AchievementsModal({ achievements = [] }) {
 
     return (
         <div className={styles.achievementsModalWrapper}>
+            <button className={styles.closeButton} onClick={onClose}>✕</button>
+
             <aside className={styles.sidebar}>
                 <h3>Progress</h3>
                 <div className={styles.percentSection}>
-                    <p className = {styles.percent}>{completionPercent}%</p>
-                    <p> {completed.length} of {achievements.length} achievements completed</p>
+                    <div className={styles.circularProgress}>
+                        <svg viewBox="0 0 36 36" className={styles.progressSvg}>
+                            <path
+                                className={styles.bgCircle}
+                                d="M18 2.0845
+                                   a 15.9155 15.9155 0 0 1 0 31.831
+                                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                            <path
+                                className={styles.progressCircle}
+                                strokeDasharray={`${completionPercent}, 100`}
+                                d="M18 2.0845
+                                   a 15.9155 15.9155 0 0 1 0 31.831
+                                   a 15.9155 15.9155 0 0 1 0 -31.831"
+                            />
+                        </svg>
+                        <div className={styles.percentText}>
+                            {completionPercent}%
+                        </div>
+                    </div>
+                    <p>{completed.length} of {achievements.length} achievements completed</p>
                 </div>
                 <p><strong>{totalExp}</strong> XP earned</p>
                 <p><strong>{achievements.length}</strong> total achievements</p>

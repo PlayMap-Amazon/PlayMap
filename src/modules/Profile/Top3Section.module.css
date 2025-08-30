@@ -1,18 +1,22 @@
 .top3FullSection {
     width: 100%;
     padding: 40px;
-    background-color: #fffdf9;
     font-family: 'Segoe UI', sans-serif;
     box-sizing: border-box;
     background-color: #fff1d6;
     border-radius: 12px;
+    background: rgba(255, 196, 0, 0.2);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+    backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .top3Title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 30px;
-    color: #31373f;
+    color: #fff7f2;
 }
 
 .top3Columns {
@@ -26,18 +30,18 @@
 .top3Column {
     flex: 1;
     min-width: 300px;
-    background-color: #fff1d6;
     border-radius: 12px;
     padding: 20px;
-    border: 2px solid #FB7E25;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     box-sizing: border-box;
+    background: rgba(255, 174, 0, 0.555);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
 }
 
 .top3Column h3 {
     margin-top: 0;
     font-size: 1.5rem;
-    color: #31373f;
+    color: #222941;
 }
 
 .columnDescription {

@@ -1,5 +1,3 @@
-import { Link } from 'react-router-dom';
-import React, { useState } from "react";
 import styles from "./CurrentStreak.module.css";
 
 export default function CurrentStreak({studyDates, streak}) {

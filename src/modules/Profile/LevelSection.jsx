@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from './LevelSection.module.css';
 
 export default function LevelSection({ level, currentExp, nextLevelExp }) {

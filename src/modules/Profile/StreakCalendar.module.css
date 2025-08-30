@@ -8,11 +8,16 @@
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   box-sizing: border-box;
   flex: 0 0 calc((100% - 30px) / 4);
+  background: rgba(255, 196, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .title {
   font-size: 1.7rem;
-  color: #31373f;
+  color: #fff7f2;
   text-align: center;
   margin-bottom: 10px;
   font-weight: 750;
@@ -27,7 +32,7 @@
 
 .header h3 {
   margin: 0;
-  color: #2C64A7;
+  color: #0e4b96;
 }
 
 .header button {
@@ -40,7 +45,7 @@
 }
 
 .header button:hover {
-  color: #FB7E25;
+  color: #fcbf99;
 }
 
 .dayNames {
@@ -49,7 +54,7 @@
   text-align: center;
   font-weight: bold;
   margin-bottom: 6px;
-  color: #4A90E2;
+  color: #ffffff;
 }
 
 .calendar {
@@ -76,9 +81,8 @@
 }
 
 .current {
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.719);
   color: #333;
-  
 }
 
 .otherMonth {
@@ -87,16 +91,15 @@
 }
 
 .active {
-  background-color: #FB7E25 !important;
+  background-color: rgba(0, 81, 255, 0.644) !important;
   color: white;
   font-weight: bold;
 }
 
 .today {
-  outline: 2px solid #4A90E2;
+  outline: 2px solid #6f96ff;
   outline-offset: -2px;
 }
-
 
 .dayNames > div {
   aspect-ratio: 1 / 1;
@@ -104,7 +107,7 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  color: #4A90E2;
+  color: #0043a8;
   user-select: none;
   font-size: 14px;
 }
