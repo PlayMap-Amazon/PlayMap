@@ -1,114 +1,131 @@
-import styles from "./ChatBot.module.css";
-import common_styles from "../../App.module.css";
-import TopBar from "../Topbar/Topbar";
-import { Link } from 'react-router-dom';
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react'
+import styles from './ChatBot.module.css'
+import BlockRenderer from './BlockRenderer'
+import FloatingParticles from '../PlayMapDashboard/FloatingParticles'
 
 export default function ChatBot() {
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState('')
+  const [messages, setMessages] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [firstInteraction, setFirstInteraction] = useState(false)
 
-
-  const botMessages = messages.filter((msg) => msg.sender === "bot");
-  const lastBotMessage = botMessages[botMessages.length - 1]?.text || "Hey there 👋 How can I help you today?";
-  const [firstInteraction, setFirstInteraction] = useState(false);
-
-
+  useEffect(() => {
+    const list = document.querySelector(`.${styles.messageList}`)
+    if (list) list.scrollTop = list.scrollHeight
+  }, [messages])
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault()
+    if (!message.trim()) return
 
-  if (!message.trim()) return;
+    setMessages((prev) => [
+      ...prev,
+      { sender: 'user', text: message.trim() },
+    ])
+    setMessage('')
+    setFirstInteraction(true)
+    setIsLoading(true)
 
-  const userMessage = { sender: "user", text: message };
-  setMessages((prev) => [...prev, userMessage]);
-  setMessage("");
+    try {
+      const res = await fetch('http://localhost:4242/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message }),
+      })
+      if (!res.ok) throw new Error('Status ' + res.status)
 
-  try {
-    const response = await fetch("http://localhost:3000/chat/rag", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ question: message }),
-    });
+      const { blocks } = await res.json()
 
-    const data = await response.json();
-
-    const botMessage = {
-      sender: "bot",
-      text: data.answer || "Oops! I didn't understand that.",
-    };
-
-    setMessages((prev) => [...prev, botMessage]);
-  } catch (error) {
-    console.error("Error fetching response from RAG:", error);
-
-    const botMessage = {
-      sender: "bot",
-      text: "Sorry, something went wrong while thinking",
-    };
-
-    setMessages((prev) => [...prev, botMessage]);
+      setMessages((prev) => [
+        ...prev,
+        { sender: 'bot', blocks },
+      ])
+    } catch (err) {
+      console.error(err)
+      setMessages((prev) => [
+        ...prev,
+        {
+          sender: 'bot',
+          blocks: [
+            { type: 'paragraph', text: 'Sorry, something went wrong.' },
+          ],
+        },
+      ])
+    } finally {
+      setIsLoading(false)
+    }
   }
-};
-
-
 
   return (
     <div className={styles.body}>
-      <TopBar>
-        <Link to="/">
-          <button
-            className={common_styles.customButton}
-            style={{
-              color: '#C06D3E',
-              backgroundColor: '#F5E9E3',
-              borderColor: '#FB7E25',
-            }}
-          >
-            Home
-          </button>
-        </Link>
-      </TopBar>
+      <FloatingParticles />
       <div className={styles.chatbotContainer}>
         <div className={styles.headerInfo}>
-          <img className={styles.botIcon} src="bot_icon_1.png" alt="bot icon" />
+          <img
+            className={styles.botIcon}
+            src="bot_icon_1.png"
+            alt="bot icon"
+          />
           <h2 className={styles.logoText}>Smart NPC Coach</h2>
         </div>
+
         {!firstInteraction && (
           <div className={styles.botContainer}>
             <div className={styles.imageContainer}>
-              <img className={styles.botImage} src="bot.png" alt="bot image" />
+              <img
+                className={styles.botImage}
+                src="bot.png"
+                alt="bot image"
+              />
             </div>
             <div className={styles.bubbleContainer}>
-              {lastBotMessage}
+              Hey there 👋 How can I help you today?
             </div>
           </div>
         )}
+
         <div className={styles.messageList}>
-          {messages.map((msg, index) => (
+          {messages.map((msg, idx) => (
             <div
-              key={index}
-              className={`${styles.messageBubble} ${
-                msg.sender === "user" ? styles.userBubble : styles.botBubble
-              }`}
+              key={idx}
+              className={`
+                ${styles.messageBubble}
+                ${msg.sender === 'user'
+                  ? styles.userBubble
+                  : styles.botBubble}
+              `}
             >
-              {msg.text}
+              {msg.sender === 'bot' && msg.blocks
+                ? <BlockRenderer blocks={msg.blocks} />
+                : <p className={styles.userParagraph}>{msg.text}</p>
+              }
             </div>
           ))}
+
+          {isLoading && (
+            <div className={`${styles.messageBubble} ${styles.botBubble}`}>
+              Thinking...
+            </div>
+          )}
         </div>
+
         <div className={styles.chatContainer}>
           <form className={styles.chatForm} onSubmit={handleSubmit}>
-            <textarea className={styles.messageInput} placeholder="Message..." value={message}
+            <textarea
+              className={styles.messageInput}
+              placeholder="Message..."
+              value={message}
               onChange={(e) => setMessage(e.target.value)}
+              disabled={isLoading}
             />
-            <button type="submit" title="Send">
-              <span className="material-symbols-rounded">arrow_upward</span>
+            <button type="submit" disabled={isLoading}>
+              <span className="material-symbols-rounded">
+                arrow_upward
+              </span>
             </button>
           </form>
         </div>
       </div>
     </div>
-  );
+  )
 }
