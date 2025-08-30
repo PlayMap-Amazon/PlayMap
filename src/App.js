@@ -1,7 +1,7 @@
 import PresentationPart from './modules/PresentationPart/PresentationPart';
 import TopBar from './modules/Topbar/Topbar';
 import styles from './App.module.css';
-import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Link, Outlet, RouterProvider } from 'react-router-dom';
 import NotFoundPage from './modules/NotFoundPage/NotFoundPage';
 import LoginPage from './modules/Login/LoginPage';
 import { AuthProvider } from './AuthContext';
@@ -9,6 +9,10 @@ import DashboardPage from './modules/Dashboard/DashboardPage';
 import ChatBot from './modules/ChatBot/ChatBot.jsx';
 import UploadDoc from './modules/UploadDoc/UploadDoc.jsx';
 import ProfilePage from './modules/Profile/ProfilePage.jsx';
+import PlayMapDashboard from './modules/PlayMapDashboard/PlayMapDashboard.jsx';
+import AppLayout from './AppLayout.jsx';
+import './index.css';
+import RequireAuth from './RequireAuth.jsx';
 
 const cards = [
   {
@@ -38,12 +42,24 @@ const cards = [
 ]
 
 const router = createBrowserRouter([
-  { path: '/', element: <MainPage /> },
-  { path: '/login', element: <LoginPage /> },
-  { path: '/dashboard', element: <DashboardPage /> },
-  { path: '/uploaddoc', element: <UploadDoc /> },
-  { path: '/chatbot', element: <ChatBot /> },
-  { path: '*', element: <NotFoundPage /> }
+  {
+    element: <AuthProvider><AppLayout /></AuthProvider>,
+    children: [
+      { path: '/', element: <ProfilePage /> },
+      { path: '/login', element: <LoginPage /> },
+      { path: '*', element: <NotFoundPage /> },
+      {
+        element: <RequireAuth><Outlet /></RequireAuth>,
+        children: [
+          { path: '/dashboard', element: <DashboardPage /> },
+          { path: '/uploaddoc', element: <UploadDoc /> },
+          { path: '/chatbot', element: <ChatBot /> },
+          { path: '/profile', element: <ProfilePage /> },
+          { path: '/playmapdashboard', element: <PlayMapDashboard />},
+        ]
+      },
+    ],
+  },
 ]);
 
 function App() {

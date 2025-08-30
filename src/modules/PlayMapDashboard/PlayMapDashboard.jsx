@@ -3,7 +3,7 @@ import styles from "./PlayMapDashboard.module.css";
 import FloatingParticles from "./FloatingParticles";
 import GameBox from "./GameBox";
 import Notification from "./Notification";
-import Navbar from "../Navbar/Navbar";
+import ChatBotButton from "../ChatBot/ChatBotButton";
 
 export default function PlayMapDashboard() {
   const [notification, setNotification] = useState(null);
@@ -15,10 +15,9 @@ export default function PlayMapDashboard() {
 
   return (
     <div className={styles.page}>
+      
       <FloatingParticles />
-
-      {/* Navbar */}
-      <Navbar />
+      <ChatBotButton />
 
       {/* Welcome */}
       <div className={styles.welcomeSection}>

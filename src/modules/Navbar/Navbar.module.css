@@ -48,6 +48,13 @@
   border-radius: 12px;
 }
 
+.logoText{
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+
 @keyframes logoFloat {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-4px) rotate(1.5deg); }

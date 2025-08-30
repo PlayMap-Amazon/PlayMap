@@ -19,15 +19,14 @@ export default function ChatbotButton() {
   if (!allowedRoutes.includes(pathname)) return null
 
   return (
-    <>
+    <Link className={styles.chatbotWrapper} to="/chatbot">
       {showBubble && (
         <div className={styles.bubble}>
           Hey there 👋 How can I help you today?
+          <span className={styles.bubbleArrow}></span>
         </div>
       )}
-    <Link className={styles.chatbotButton} to="/chatbot">
       <img className={styles.botIcon} src="/bot_icon_1.png" alt="ChatBot" />
     </Link>
-    </>
   )
 }

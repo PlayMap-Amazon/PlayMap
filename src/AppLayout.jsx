@@ -10,9 +10,9 @@ export default function AppLayout() {
     <>
       <Navbar />
       <FadeIn key={pathname}>
+        <ChatBotButton />
         <Outlet />
       </FadeIn>
-
       <ChatBotButton />
     </>
   )
