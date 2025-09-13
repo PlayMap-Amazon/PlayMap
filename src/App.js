@@ -45,7 +45,7 @@ const router = createBrowserRouter([
   {
     element: <AuthProvider><AppLayout /></AuthProvider>,
     children: [
-      { path: '/', element: <ProfilePage /> },
+      { path: '/', element: <PresentationPart /> },
       { path: '/login', element: <LoginPage /> },
       { path: '*', element: <NotFoundPage /> },
       {

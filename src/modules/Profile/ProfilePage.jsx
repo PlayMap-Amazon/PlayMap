@@ -15,186 +15,124 @@ import Top3Section from "./Top3Section.jsx";
 import FloatingParticles from "../PlayMapDashboard/FloatingParticles.jsx";
 import ChatBotButton from "../ChatBot/ChatBotButton.jsx";
 import Portal from "./Portal.jsx";
+import { useAuth } from "../../AuthContext"; 
 
 export default function ProfilePage() {
+  const { user, loading } = useAuth?.() ?? { user: null, loading: false };
 
-    const [showLeaderboard, setShowLeaderboard] = useState(false);
-    const [showAchievements, setShowAchievements] = useState(false);
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [showAchievements, setShowAchievements] = useState(false);
 
+  if (loading) return <div className={styles.body}>Loading...</div>;
+  if (!user) return <div className={styles.body}>No user logged in</div>;
 
-    const user = {
-        username: "Emma Smith",
-        experience: 320,
-        level: 8,
-        streak: 3,
-        institution: "Massachusetts Institute of Technology",
-        studySessions: [
-            { date: "2025-07-17", hours: 1 },
-            { date: "2025-07-18", hours: 2 },
-            { date: "2025-07-22", hours: 1.5 },
-            { date: "2025-07-23", hours: 3 },
-            { date: "2025-07-24", hours: 2.5 },
-        ],
-        friends: [
-            {
-            username: "Alex",
-            level: 5,
-            experience: 280,
-            avatarUrl: "profile_picture_2.png",
-            },
-            {
-            username: "Luna",
-            level: 6,
-            experience: 320,
-            avatarUrl: "profile_picture_3.png",
-            },
-        ],
-        topMindMaps: [
-            { title: "Data Structures", count: 5 },
-            { title: "Networking Fundamentals", count: 4 },
-            { title: "Object-Oriented Programming (OOP)", count: 3 },
-            { title: "English Vocabulary", count: 2 },
-        ],
-        topMinigameTopics: [
-            { topic: "Math Basics", count: 10 },
-            { topic: "English Vocabulary", count: 8 },
-            { topic: "Sorting Algorithms", count: 6 },
-            { topic: "Data Structures", count: 4 },
-        ],
-        achievements: [
-            {
-                title: "Consistency is Key",
-                description: "Studied 5 days in a row.",
-                exp: 60,
-                unlocked: true,
-                image: "/images/achievements/consistency.png",
-                category: "Study",
-            },
-            {
-                title: "Minigame Explorer",
-                description: "Played all minigames at least once.",
-                exp: 80,
-                unlocked: true,
-                image: "/images/achievements/explorer.png",
-                category: "Games",
-            },
-            {
-                title: "Perfect Score",
-                description: "Completed a minigame with 100% accuracy.",
-                exp: 90,
-                unlocked: false,
-                image: "/images/achievements/perfect.png",
-                category: "Games",
-            },
-            {
-                title: "Practice Makes Perfect",
-                description: "Played the same minigame 10 times.",
-                exp: 60,
-                unlocked: true,
-                image: "/images/achievements/practice.png",
-                category: "Games",
-            },
-            {
-                title: "Achievement Hunter",
-                description: "Unlocked 10 achievements.",
-                exp: 100,
-                unlocked: true,
-                image: "/images/achievements/hunter.png",
-                category: "Meta",
-            }
-        ]
-    };
+  const safeUser = {
+    username: user.username ?? user.name ?? "Unknown",
+    experience: user.experience ?? user.exp ?? 0,
+    level: user.level ?? 0,
+    streak: user.streak ?? 0,
+    institution: user.institution ?? null,
+    studySessions: Array.isArray(user.studySessions) ? user.studySessions : [],
+    friends: Array.isArray(user.friends) ? user.friends : [],
+    topMindMaps: Array.isArray(user.topMindMaps) ? user.topMindMaps : [],
+    topMinigameTopics: Array.isArray(user.topMinigameTopics)
+      ? user.topMinigameTopics
+      : [],
+    achievements: Array.isArray(user.achievements) ? user.achievements : [],
+    img: user.img ?? user.avatarUrl ?? null,
+  };
 
-    const leaderboardUsers = [
-    {
-      ...user,
-      avatarUrl: "profile_picture.png",
-    },
-    ...user.friends,
+  const leaderboardUsers = [
+    { ...safeUser, avatarUrl: safeUser.img ?? "profile_picture.png" },
+    ...safeUser.friends.map((f) => ({
+      username: f.username ?? f.name ?? "Friend",
+      level: f.level ?? 0,
+      experience: f.experience ?? 0,
+      avatarUrl: f.avatarUrl ?? f.img ?? "profile_picture_2.png",
+    })),
   ];
 
   leaderboardUsers.sort((a, b) => {
     if (b.level === a.level) {
-      return b.experience - a.experience;
+      return (b.experience ?? 0) - (a.experience ?? 0);
     }
-    return b.level - a.level;
+    return (b.level ?? 0) - (a.level ?? 0);
   });
 
-    function getRequiredExp(level) {
-        return Math.floor(100 * Math.pow(1.2, level - 1));
-    }
+  function getRequiredExp(level) {
+    return Math.floor(100 * Math.pow(1.2, Math.max(1, level - 1)));
+  }
 
-    const nextLevelExp = getRequiredExp(user.level + 1);
+  const nextLevelExp = getRequiredExp(safeUser.level + 1);
 
-    return (
-        
-        <div className={styles.body}>
-            <FloatingParticles />
-            <ChatBotButton />
-            <div className={styles.profilePage}>
-                <div className={styles.profileContainer}>
-                    <div className={styles.profileInfo}>
-                        <ProfileInfo user = {user}/>
-                    </div>
-                    <div className={styles.iconsContainer}>
-                        <CurrentStreak 
-                            streak={user.streak}
-                            studyDates={user.studySessions.map(session => session.date)}
-                        />
-                        <LevelSection 
-                            level={user.level}
-                            currentExp={user.experience}
-                            nextLevelExp={nextLevelExp}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            <div className={styles.row}>
-                <StreakCalendar
-                    studyDates={user.studySessions.map(session => session.date)}
-                />
-                <div className={styles.section}>
-                    <StudyTimeSection user={user}/>
-                    <button className={styles.button} onClick={() => setShowLeaderboard(true)}>
-                        Show Leaderboard
-                    </button>
-                    {showLeaderboard && (
-                        <Portal>
-                            <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
-                                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                                    <LeaderBoard friends={leaderboardUsers}  onClose={() => setShowLeaderboard(false)}/>
-                                </div>
-                            </div>
-                        </Portal>
-                    )}
-                </div>
-                <div className={styles.section}>
-                    <AchievementsSection />
-                    <button className={styles.button} onClick={() => setShowAchievements(true)}>
-                        Show All
-                    </button>
-                    {showAchievements && (
-                    <div className={styles.modalOverlay} onClick={() => setShowAchievements(false)}>
-                        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                            <AchievementsModal 
-                                achievements={user.achievements} 
-                                onClose={() => setShowAchievements(false)} 
-                            />
-                        </div>
-                    </div>
-                    )}
-
-                </div>
-                <StudyBuddy />
-            </div>
-            <div className={styles.row}>
-                <TaskTracker />
-                <ExamCalendar />
-            </div>
-            <div className={styles.row}>
-                <Top3Section user={user} />
-            </div>
+  return (
+    <div className={styles.body}>
+      <FloatingParticles />
+      <ChatBotButton />
+      <div className={styles.profilePage}>
+        <div className={styles.profileContainer}>
+          <div className={styles.profileInfo}>
+            <ProfileInfo user={safeUser} />
+          </div>
+          <div className={styles.iconsContainer}>
+            <CurrentStreak
+              streak={safeUser.streak}
+              studyDates={safeUser.studySessions.map((s) => s.date)}
+            />
+            <LevelSection
+              level={safeUser.level}
+              currentExp={safeUser.experience}
+              nextLevelExp={nextLevelExp}
+            />
+          </div>
         </div>
-    );
+      </div>
+
+      <div className={styles.row}>
+        <StreakCalendar studyDates={safeUser.studySessions.map((s) => s.date)} />
+        <div className={styles.section}>
+          <StudyTimeSection user={safeUser} />
+          <button className={styles.button} onClick={() => setShowLeaderboard(true)}>
+            Show Leaderboard
+          </button>
+
+          {showLeaderboard && (
+            <Portal>
+              <div className={styles.modalOverlay} onClick={() => setShowLeaderboard(false)}>
+                <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                  <LeaderBoard friends={leaderboardUsers} onClose={() => setShowLeaderboard(false)} />
+                </div>
+              </div>
+            </Portal>
+          )}
+        </div>
+
+        <div className={styles.section}>
+          <AchievementsSection />
+          <button className={styles.button} onClick={() => setShowAchievements(true)}>
+            Show All
+          </button>
+
+          {showAchievements && (
+            <div className={styles.modalOverlay} onClick={() => setShowAchievements(false)}>
+              <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                <AchievementsModal achievements={safeUser.achievements} onClose={() => setShowAchievements(false)} />
+              </div>
+            </div>
+          )}
+        </div>
+
+        <StudyBuddy />
+      </div>
+
+      <div className={styles.row}>
+        <TaskTracker />
+        <ExamCalendar />
+      </div>
+
+      <div className={styles.row}>
+        <Top3Section user={safeUser} />
+      </div>
+    </div>
+  );
 }

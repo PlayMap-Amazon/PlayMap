@@ -1,9 +1,10 @@
 import styles from './LoginPage.module.css';
 import common_styles from '../../App.module.css'; 
-import TopBar from '../Topbar/Topbar';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../AuthContext';
+import FloatingParticles from '../PlayMapDashboard/FloatingParticles';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const LoginMode = {
   Login: 'LOGIN',
@@ -15,17 +16,42 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const [logType, setLogType] = useState(LoginMode.Login);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ email: '', password: '', confirmPassword: '', username: '', firstName: ''});
+  const [formErrors, setFormErrors] = useState({});
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+  useEffect(() => {
+    const errors = {};
+
+    if (formData.password && formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+      setPasswordError(errors.password);
+    } else {
+      setPasswordError('');
+    }
+
+    if (formData.confirmPassword && formData.password !== formData.confirmPassword) {
+      errors.confirmPassword = "Passwords do not match";
+      setConfirmPasswordError(errors.confirmPassword);
+    } else {
+      setConfirmPasswordError('');
+    }
+
+    setFormErrors(errors);
+  }, [formData.password, formData.confirmPassword]);
 
   const handleChange = (e) => {
-    const { type, value } = e.target;
+    const { name, value } = e.target;
     setFormData(prevData => ({
       ...prevData,
-      [type]: value
+      [name]: value
     }));
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(prev => !prev);
   };
 
   const handleLogin = async (e) => {
@@ -41,26 +67,29 @@ function LoginPage() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    await register(formData);
-    setFormData({ email: '', password: '' });
+    if (formData.password !== formData.confirmPassword) return;
+
+    const payload = {
+      email: formData.email,
+      username: formData.username,
+      password: formData.password,
+      firstName: formData.firstName
+    };
+
+    await register(payload);
+
+    setFormData({
+      email: '',
+      password: '',
+      confirmPassword: '',
+      username: '',
+      firstName: ''
+    });
   };
 
   return (
     <div className={common_styles.FirstContainer}>
-      <TopBar>
-        <Link to="/">
-          <button
-            className={common_styles.customButton}
-            style={{
-              color: '#C06D3E',
-              backgroundColor: '#F5E9E3',
-              borderColor: '#FB7E25',
-            }}
-          >
-            Home
-          </button>
-        </Link>
-      </TopBar>
+      <FloatingParticles />
       <div className={styles.presentationContainer}>
         <div className={styles.textContainer}>
           <div className={styles.loginPanel}>
@@ -72,34 +101,51 @@ function LoginPage() {
                 <span className={styles.optionButtonText}>Sign Up</span>
               </button>
             </div>
-            {
-              logType === LoginMode.Login ? (
-                <div className={styles.loginDiv}>
-                  <form onSubmit={handleLogin} className={styles.loginForm}>
-                    <h2 className={styles.panelTitle}>Welcome back to PlayMap! 🎮</h2>
-                    <input type="email" value={formData.email} placeholder="Email" onChange={handleChange}/>
-                    <input type="password" value={formData.password} placeholder="Password" onChange={handleChange}/>
-                    <button type="submit" className={styles.submitButton}>Login</button>
-                  </form>
-                  <div className={styles.helpers}>
-                    <p className={styles.gotoSignup}>
-                      Don't have an account? <span className={styles.linkText} onClick={() => setLogType(LoginMode.Signup)}>Sign Up</span>
-                    </p>
-                    <p className={styles.gotoForgotPassword}>
-                      Forgot your password? <span className={styles.linkText} onClick={() => navigate('/forgot-password')}>Reset it</span>
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleRegister} className={styles.loginForm}>
-                  <h2 className={styles.panelTitle} style={{marginBottom: "-20px"}}>Welcome back to PlayMap! 🎮</h2>
-                  <p className={styles.panelDesc}>Let's create your account and start your learning adventure!</p>
-                  <input type="email" value={formData.email} placeholder="Email" onChange={handleChange}/>
-                  <input type="password" value={formData.password} placeholder="Password" onChange={handleChange}/>
-                  <button type="submit" className={styles.submitButton}>Create Account</button>
+
+            {logType === LoginMode.Login ? (
+              <div className={styles.loginDiv}>
+                <form onSubmit={handleLogin} className={styles.loginForm}>
+                  <h2 className={styles.panelTitle}>Welcome back to PlayMap! 🎮</h2>
+                  <input name="email" type="email" value={formData.email} placeholder="Email" onChange={handleChange}/>
+                  <input name="password" type="password" value={formData.password} placeholder="Password" onChange={handleChange}/>
+                  <button type="submit" className={styles.submitButton}>Login</button>
                 </form>
-              )
-            }
+              </div>
+            ) : (
+              <form onSubmit={handleRegister} className={styles.loginForm}>
+                <input name="email" type="email" value={formData.email} placeholder="Email" onChange={handleChange}/>
+                <input name="username" type="text" value={formData.username} placeholder="Username" onChange={handleChange}/>
+                <input name="firstName" type="text" value={formData.firstName} placeholder="First name" onChange={handleChange}/>
+
+                <div className="password-input">
+                  <input
+                    name="password"
+                    type={passwordVisible ? 'text' : 'password'}
+                    value={formData.password}
+                    placeholder="Password"
+                    onChange={handleChange}
+                  />
+                </div>
+                {passwordError && <p className="error-message">{passwordError}</p>}
+
+                <div className="password-input">
+                  <input
+                    name="confirmPassword"
+                    type={passwordVisible ? 'text' : 'password'}
+                    value={formData.confirmPassword}
+                    placeholder="Confirm Password"
+                    onChange={handleChange}
+                  />
+                  <button type="button" onClick={togglePasswordVisibility} className="password-toggle-btn">
+                    {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+                {confirmPasswordError && <p className="error-message">{confirmPasswordError}</p>}
+
+                <button type="submit" className={styles.submitButton}>Create Account</button>
+              </form>
+            )}
+
           </div>
         </div>
       </div>

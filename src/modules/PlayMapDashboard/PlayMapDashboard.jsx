@@ -4,14 +4,28 @@ import FloatingParticles from "./FloatingParticles";
 import GameBox from "./GameBox";
 import Notification from "./Notification";
 import ChatBotButton from "../ChatBot/ChatBotButton";
+import { useAuth } from "../../AuthContext";
 
 export default function PlayMapDashboard() {
   const [notification, setNotification] = useState(null);
-
   const showNotification = (message) => {
     setNotification(message);
     setTimeout(() => setNotification(null), 4000);
   };
+
+  const { user, loading } = useAuth?.() ?? { user: null, loading: false };
+  const rawName = user?.firstName?.trim() || user?.username || 'there';
+  const displayName = rawName
+    ? rawName.charAt(0).toUpperCase() + rawName.slice(1)
+    : 'There';
+
+  if (loading) {
+    return (
+      <div className={styles.page}>
+        <p>Loading Profile…</p>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.page}>
@@ -22,7 +36,7 @@ export default function PlayMapDashboard() {
       {/* Welcome */}
       <div className={styles.welcomeSection}>
         <h1 className={styles.welcomeTitle}>
-          Welcome back, <span className={styles.username}>John</span>!
+          Welcome back, <span className={styles.username}>{displayName}</span>!
         </h1>
       </div>
 

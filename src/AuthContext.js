@@ -1,27 +1,14 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 
 const AuthContext = createContext();
+const API_BASE = process.env.REACT_APP_API_BASE || 'http://localhost:4242/api';
+
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
-    if (process.env.NODE_ENV === 'development') {
-      setUser({
-        id: 'dev-1',
-        name: 'Dev User',
-        level: 5,
-        experience: 1200,
-        streak: 3,
-        studySessions: [{ date: '2025-08-28' }],
-        achievements: ['first-login','five-days-streak']
-      });
-      setLoading(false);
-      return; 
-    }
-
     
     const fetchProfile = async () => {
       try {
@@ -53,32 +40,30 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (data) => {
     try {
-        const res = await fetch('https://subtle-chimp-equally.ngrok-free.app/auth/register', {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-              'Content-Type': 'application/json',
-              'ngrok-skip-browser-warning': 'true',
-            },
-            body: JSON.stringify(data),
-        });
-        if (res.ok) {
-            const result = await res.json();
-            console.log('Setting user:', result);
-            setUser(result);
-            return result;
-        }
-        setUser(null);
+      const res = await fetch(`${API_BASE}/auth/register`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-        return null;
+      if (res.ok) {
+        const result = await res.json();
+        console.log('Setting user:', result.user);
+        setUser(result.user);
+        return result.user;
+      }
+
+      setUser(null);
+      return null;
     } catch (error) {
-        console.error('Fetch failed:', error.message || error);
+      console.error('Fetch failed:', error.message || error);
     }
-  }
+  };
   
   const login = async (data) => {
     try {
-        const res = await fetch('https://subtle-chimp-equally.ngrok-free.app/auth/login', {
+        const res = await fetch(`${API_BASE}/auth/login`, {
             method: 'POST',
             credentials: 'include',
             headers: {
@@ -89,12 +74,14 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (res.ok) {
-            const result = await res.json();
-            setUser(result);
-            return result;
+          const result = await res.json();
+          console.log('Setting user:', result.user);
+          
+          setUser(result.user);
+          return result.user;
         } else {
-            setUser(null);
-            return null;
+          setUser(null);
+          return null;
         }
     } catch (error) {
         console.error('Fetch failed:', error.message || error);
@@ -102,11 +89,13 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    await fetch('https://subtle-chimp-equally.ngrok-free.app/auth/logout', {
+    await fetch(`${API_BASE}/auth/logout`, {
       method: 'POST',
       headers: {
         'ngrok-skip-browser-warning': 'true'
-      }
+      },
+      credentials: 'include'
+
     });
     setUser(null);
   };
