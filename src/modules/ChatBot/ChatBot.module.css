@@ -1,19 +1,5 @@
-:root {
-  --primary-orange: #ff6f00;
-  --dark-orange: #e65100;
-  --accent-orange: #ff9800;
-  --dark: #0A0E27;
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --white: #FFFFFF;
-}
-
 .body {
-  min-height: 100vh;
   margin: 0;
-  background: radial-gradient(circle at 20% 80%, var(--primary-orange) 0%, transparent 50%),
-              radial-gradient(circle at 80% 20%, var(--accent-orange) 0%, transparent 50%),
-              radial-gradient(circle at 40% 40%, var(--dark-orange) 0%, transparent 50%),
-              linear-gradient(135deg, #0A0E27 0%, rgba(255, 111, 0, 0.06) 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
