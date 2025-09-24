@@ -135,6 +135,13 @@ body {
   text-shadow: 0 6px 22px rgba(255,143,0,0.08);
 }
 
+.panelSubtitle {
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.78);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
 .panelDesc {
   font-size: 0.94rem;
   color: rgba(255,255,255,0.85);
@@ -220,6 +227,279 @@ input:focus {
   margin-top: 4px;
 } 
 
+
+.stepper {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 8px 0 12px;
+  align-items: center;
+}
+
+.stepCircle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: background 220ms ease, transform 160ms ease, box-shadow 220ms;
+}
+
+.stepCircle.active {
+  background: linear-gradient(90deg, rgba(108, 106, 255, 0.37), rgba(61, 31, 233, 0.425));
+  box-shadow: 0 6px 18px rgba(255,111,0,0.18);
+  transform: scale(1.12);
+  border-color: rgba(255,111,0,0.9);
+}
+
+.stepButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+.backButton {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.06);
+  background: transparent;
+  color: rgba(255,255,255,0.9);
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  transition: transform 0.12s ease;
+}
+
+.backButton:hover {
+  transform: translateY(-2px);
+}
+
+.linkInline {
+  background: none;
+  border: none;
+  color: var(--light-orange);
+  cursor: pointer;
+  font-weight: 700;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordWrapper input {
+  width: 100%;
+  padding-right: 42px; 
+}
+
+.passwordToggleBtn {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.9);
+}
+
+.errorText {
+  color: #f5e0e0;
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+
+select {
+  -webkit-appearance: none; 
+  -moz-appearance: none;  
+  appearance: none;        
+
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 0.98rem;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border); 
+  background: rgba(0, 81, 255, 0.644);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+
+  color: var(--muted-white);
+  outline: none;
+  transition: box-shadow 0.22s, border-color 0.22s, transform 0.12s;
+  margin-top: 6px;
+
+  padding-right: 36px;
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+}
+
+select:focus {
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  transform: translateY(-1px);
+
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23ff922c' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+}
+
+
+.avatarGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 12px;
+  align-items: stretch;
+}
+
+.avatarOption {
+  cursor: pointer;                
+  border-radius: 10px;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid var(--glass-border); 
+  background: rgba(0, 81, 255, 0.644);
+  transition: transform .16s ease, box-shadow .16s ease, border-color .12s ease;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: flex-start;
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+
+}
+.avatarOption:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 18px rgba(17,24,39,0.06);
+}
+
+.selectedAvatar {
+  border-color: #6b46c1; 
+  box-shadow: 0 8px 24px rgba(107,70,193,0.12);
+  transform: translateY(-2px) scale(1.02);
+}
+
+.avatarImage {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #f3f4f6;
+}
+
+.avatarLabel {
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: capitalize;
+  color: #111827;
+}
+
+.reminderGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.reminderBox {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border); 
+  min-height: 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer; 
+  transition: background .12s ease, border-color .12s ease, transform .12s ease;
+  background: rgba(0, 81, 255, 0.644);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+}
+.reminderBox:hover {
+  transform: translateY(-3px);
+  border-color: #c7b3ff;
+  background: linear-gradient(180deg, rgba(247,245,255,0.6), #fff);
+}
+
+.selectedReminder {
+  border-color: #7c3aed;
+  background: linear-gradient(180deg, rgba(124,58,237,0.06), #fff);
+  box-shadow: 0 8px 18px rgba(124,58,237,0.06);
+}
+
+.reminderPlaceholder {
+  margin-top: 8px;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.sliderWrapper {
+  margin-top: 12px;
+  max-width: 420px;  
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center; 
+  padding: 6px 12px;
+}
+
+.timeDisplay {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.rangeInput {
+  -webkit-appearance: none; 
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #a78bfa 0%, #60a5fa 100%);
+  outline: none;
+  cursor: pointer;
+  margin: 0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.rangeInput::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #6b46c1;
+  box-shadow: 0 6px 12px rgba(11,13,35,0.12);
+  margin-top: -6px;
+}
+.rangeInput::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #6b46c1;
+  box-shadow: 0 6px 12px rgba(11,13,35,0.12);
+}
+
+.rangeTicks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+
 @media (max-width: 900px) {
   .loginPanel { width: 92%; max-width: 420px; padding: 1rem; }
   .presentationContainer { padding: 2rem; }
@@ -229,4 +509,24 @@ input:focus {
   .panelTitle { font-size: 1.25rem; }
   .loginButton { font-size: 0.95rem; padding: 0.75rem; }
   .submitButton { padding: 11px; font-size: 0.92rem; }
+}
+
+@media (max-width: 480px) {
+  .stepCircle { width: 10px; height: 10px; }
+  .stepButtons { gap: 8px; }
+}
+
+@media (max-width: 520px) {
+  .avatarGrid,
+  .reminderGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .avatarImage {
+    height: 140px;
+  }
+
+  .sliderWrapper {
+    max-width: 320px;
+  }
 }
