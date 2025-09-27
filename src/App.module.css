@@ -1,13 +1,9 @@
 .FirstContainer {
-  height: 100vh;
-  width: 100%;
   background: linear-gradient(to bottom, #FF9933, #FD751D);
-  overflow-x: hidden;
+  margin: 0px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 0px;
 }
 
 .SecondContainer {

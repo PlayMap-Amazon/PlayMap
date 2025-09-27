@@ -1,0 +1,142 @@
+.textContainer {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.brainImage {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.loginPanel {
+  height: 90%;
+  width: 30%;
+  background-color: rgba(255, 255, 255, 0.585);
+  border: 2px solid white;
+  border-radius: 15px;
+}
+
+.loginOptions {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid white;
+}
+
+.loginButton {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  color: #FB7E25;
+  padding: 20px 24px;
+  border: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.loginButton:hover {
+  background-color: rgba(251, 126, 37, 0.1);
+}
+
+.loginButton:active {
+  background-color: rgba(251, 126, 37, 0.1);
+}
+
+.optionButtonText {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.loginButton:hover .optionButtonText,
+.loginButton:active .optionButtonText {
+  transform: scale(1.1);
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.loginDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 100%;
+}
+
+.panelTitle {
+  font-size: 1.7rem;
+  color: #FB7E25;
+}
+
+.panelDesc {
+  font-size: 1.0rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.submitButton {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #FB7E25;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #FB7E25;
+  transform: translateY(-1px);
+}
+
+.submitButton:active {
+  background-color: #FB7E25;
+  transform: translateY(0);
+}
+
+.helpers {
+  margin-top: 5px;
+  width: 85%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.gotoSignup {
+  font-size: 0.75rem;
+  color: #333;
+}
+
+.gotoForgotPassword {
+  font-size: 0.75rem;
+  color: #333;
+}
+
+.linkText {
+  color: #333;
+  cursor: pointer;
+  text-decoration: underline;
+}

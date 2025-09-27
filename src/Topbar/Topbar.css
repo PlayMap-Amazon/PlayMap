@@ -1,0 +1,10 @@
+.topBarItemsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 6px;
+}
