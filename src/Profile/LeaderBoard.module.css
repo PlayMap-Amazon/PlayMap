@@ -1,0 +1,101 @@
+.leaderBoardContainer {
+  background: rgba(0, 29, 107, 0.651);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  font-family: 'Inter', sans-serif;
+  min-width: 40%;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 2000;
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 16px;
+  color: #e6f0ff; 
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 12px 8px;
+  text-align: center;
+  color: #f0f4ff;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.table tr:hover {
+  background-color: rgba(0, 47, 255, 0.25);
+}
+
+.avatar {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  object-fit: cover;
+  margin-left: -10px;
+}
+
+.rankCell {
+  width: 50px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.medal {
+  margin-left: 20px;
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.rank {
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  line-height: 36px;
+  text-align: center;
+  color: #fff;
+  background-color: rgba(0, 47, 255, 0.6);
+  box-shadow: 0 0 10px rgba(0, 47, 255, 0.4);
+}
+
+.normal {
+  color: #e0e7ff;
+  background-color: transparent;
+}
+
+.closeButton {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid var(--glass-border);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.closeButton:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+

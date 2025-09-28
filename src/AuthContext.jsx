@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (data) => {
     try {
+        data.username = "TempUser";
         const res = await fetch(`${url}/auth/register`, {
             method: 'POST',
             credentials: 'include',

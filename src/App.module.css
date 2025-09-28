@@ -1,5 +1,20 @@
+:root {
+  --primary-orange: #ff6f00;
+  --dark-orange: #e65100;
+  --orange: #ff6f00;
+  --light-orange: #ff8f00;
+  --accent-orange: #ff9800;
+  --dark: #0A0E27;
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.18);
+  --white: #FFFFFF;
+}
+
 .FirstContainer {
-  background: linear-gradient(to bottom, #FF9933, #FD751D);
+  background: radial-gradient(circle at 20% 80%, var(--primary-orange) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, var(--accent-orange) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, var(--dark-orange) 0%, transparent 50%),
+              linear-gradient(135deg, #1e2658 0%, rgba(255, 111, 0, 0.06) 100%);
   margin: 0px;
   height: 100vh;
   display: flex;

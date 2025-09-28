@@ -20,7 +20,10 @@ function RegisterPage() {
         <div className="flex flex-col items-center justify-center h-full">
           <div className="w-full max-w-sm">
             <RegisterForm onSubmitCallback={(loginObj) => {
-              register(loginObj);
+              const user = register(loginObj);
+              if (user) {
+                navigate("/dashboard");
+              }
             }}/>
           </div>
         </div>

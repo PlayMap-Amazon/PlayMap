@@ -11,10 +11,10 @@ import DashboardPage from './Dashboard/DashboardPage';
 
 import { ArrowedButton } from './components/ui/button';
 import Example from './Example';
-import SidebarPage from './sidebarpage';
 import { Toaster } from 'sonner';
-import KnowledgeGraph from './KnowledgeGraph';
 import Quiz from './Quiz';
+import Navbar from './Navbar/Navbar';
+import ProfilePage from './Profile/ProfilePage';
 
 const cards = [
   {
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
   { path: '/example', element: <Example /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/register', element: <RegisterPage /> },
-  { path: '/dashboard', element: <DashboardPage /> },
+  { path: '/dashboard', element: <ProfilePage /> },
   { path: '*', element: <NotFoundPage /> }
 ]);
 
@@ -66,11 +66,7 @@ function MainPage() {
   return (
     <div>
       <div className={styles.FirstContainer}>
-        <TopBar>
-          <ArrowedButton className='mr-5' variant='outline' link='/login' unroundOnHover>Log in</ArrowedButton>
-          <ArrowedButton link='/register' unroundOnHover>Get started</ArrowedButton>
-        </TopBar>
-
+        <Navbar />
         <PresentationPart />
       </div>
     </div>

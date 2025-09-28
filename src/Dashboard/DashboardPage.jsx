@@ -13,19 +13,19 @@ function DashboardPage() {
     const [currentScreen, setCurrentScreen] = useState(PageTypes.MapPage);
     const [focusedFileMetadata, setFocusedFileMetadata] = useState(null);
 
-    useEffect(() => {
-        if (!loading && !user) {
-            navigate('/login');
-        }
-    }, [navigate, user, loading]);
+    // useEffect(() => {
+    //     if (!loading && !user) {
+    //         navigate('/login');
+    //     }
+    // }, [navigate, user, loading]);
 
-    if (loading || !user) {
-        return (
-            <div>
-                <p>Loading...</p>
-            </div>
-        );
-    }
+    // if (loading || !user) {
+    //     return (
+    //         <div>
+    //             <p>Loading...</p>
+    //         </div>
+    //     );
+    // }
     
     return (
         <div style={{ display: "flex", height: "100vh" }}>

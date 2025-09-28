@@ -1,0 +1,119 @@
+.calendarWrapper {
+  flex: 0 0 calc((100% - 30px) / 4);               
+  background-color: #fff1d6;
+  border-radius: 12px;
+  border: 2px solid #FB7E25;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-sizing: border-box;
+  flex: 0 0 calc((100% - 30px) / 4);
+  background: rgba(255, 196, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.title {
+  font-size: 1.7rem;
+  color: #fff7f2;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: 750;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.header h3 {
+  margin: 0;
+  color: #0e4b96;
+}
+
+.header button {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #2C64A7;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.header button:hover {
+  color: #fcbf99;
+}
+
+.dayNames {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #ffffff;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.day {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  user-select: none;
+}
+
+.current {
+  background-color: rgba(255, 255, 255, 0.719);
+  color: #333;
+}
+
+.otherMonth {
+  background-color: #e9e2da;
+  color: #aaa;
+}
+
+.active {
+  background-color: rgba(0, 81, 255, 0.644) !important;
+  color: white;
+  font-weight: bold;
+}
+
+.today {
+  outline: 2px solid #6f96ff;
+  outline-offset: -2px;
+}
+
+.dayNames > div {
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #0043a8;
+  user-select: none;
+  font-size: 14px;
+}
+
+.day:empty::before {
+  content: "\00a0";
+  display: block;
+  height: 100%;
+}

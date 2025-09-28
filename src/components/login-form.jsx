@@ -25,8 +25,10 @@ export function LoginForm({
     const email = e.target["email"].value;
     const password = e.target["password"].value;
     try {
-      await login({ email, password });
-      navigate("/dashboard");
+      const user = await login({ email, password });
+      if (user) {
+        navigate("/dashboard");
+      }
     } catch (err) {
       // Optionally handle error (e.g., show message)
     }

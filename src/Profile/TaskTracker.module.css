@@ -1,0 +1,305 @@
+.taskWrapper {
+  flex: 1;
+  width: 300px;
+  border-radius: 12px;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  margin-right: 10px;
+  background: rgba(255, 196, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.taskTitle {
+  font-size: 20px;
+  color: #fff7f2;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #b84900e5;
+}
+
+.tabs button {
+  border: none;
+  border-bottom: 4px solid transparent;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 16px 8px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  transition: all 0.3s ease;
+  color: white;
+  position: relative;
+}
+
+.activeTab {
+  background-color: #b84900e5;
+  color: white;
+  border-bottom: none; 
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 700;
+  z-index: 1;
+}
+
+
+.inactiveTab {
+  background-color: #f0701bd0;
+  border-bottom: 4px  #f0701bd0;
+  color: white;
+}
+
+
+.tabs button:hover:not(.activeTab) {
+  background-color: #ffb380;
+  color: white;
+}
+
+.taskForm input,
+.taskForm select {
+  display: block;
+  margin: 8px auto;
+  padding: 6px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.taskForm button {
+  margin-top: 8px;
+  background: rgba(0, 81, 255, 0.644);
+  border: 1px solid var(--glass-border);  
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  color: white;
+  border: none;
+  padding: 8px;
+  width: 100%;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.taskForm button:hover {
+  background-color: #003168e1;
+}
+
+.taskList {
+  list-style: none;
+  padding-left: 0;
+  max-height: 180px;
+  min-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.taskList li {
+  padding: 8px;
+  margin-bottom: 6px;
+  background: rgba(255, 174, 0, 0.555);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  position: relative;
+  transition: background-color 0.2s ease;
+}
+
+.taskList li:hover {
+  background: rgba(255, 174, 0, 0.705);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+}
+
+.taskList input[type="checkbox"] {
+  margin-right: 6px;
+  transform: scale(1.2);
+}
+
+.taskList strong {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 6px;
+  font-size: 12px;
+  border-radius: 4px;
+  margin-top: 4px;
+  margin-right: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.high {
+  background-color: #e74c3c;
+}
+
+.medium {
+  background-color: #f39c12;
+}
+
+.low {
+  background-color: #27ae60;
+}
+
+.overdue {
+  color: #e74c3c;
+  font-weight: bold;
+  background: #ffe6e6;
+  border-radius: 4px;
+  padding: 2px 5px;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.noTasksMessage {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+
+.openModalButton {
+  display: block;
+  margin: 0 auto 15px;
+  background: #2C64A7;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.openModalButton:hover {
+  background-color: #003168e1;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modalContent {
+  background: rgba(0, 29, 107, 0.651);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  padding: 20px;
+  border-radius: 12px;
+  width: 300px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.modalContent input,
+.modalContent select {
+  width: 90%;
+  padding: 8px;
+  margin: 8px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.modalButtons button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modalButtons button:first-child {
+  background-color: #2C64A7;
+  color: white;
+}
+
+.modalButtons button:first-child:hover {
+  background-color: #4a90e2;
+}
+
+.modalButtons button:last-child {
+  background-color: #aaa;
+  color: white;
+}
+
+.modalButtons button:last-child:hover {
+  background-color: #888;
+}
+
+.taskItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  transition: background 0.3s ease;
+}
+
+.taskLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.taskLabel input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.taskName {
+  font-weight: 600;
+  color: #333;
+}
+
+.taskInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 13px;
+  color: #666;
+  padding-left: 26px;
+}
+

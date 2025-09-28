@@ -189,7 +189,7 @@ export function RegisterForm({
   async function handleRegister(data) {
     try {
       await onSubmitCallback(data);
-      navigate("/dashboard");
+      // navigate("/dashboard");
     } catch (err) {
       // Optionally handle error (e.g., show message)
     }
