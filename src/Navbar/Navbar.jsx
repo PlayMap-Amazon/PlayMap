@@ -30,9 +30,8 @@ export default function Navbar() {
           ) : user ? (
             <>
               <Link to="/profile" className={styles.navItem}> My Profile</Link>
-              <a href="#" className={styles.navItem}>Stories</a>
-              <a href="#" className={styles.navItem}>Mindmaps</a>
-              <a href="#" className={styles.navItem}>Games</a>
+              <Link to="/dashboard" className={styles.navItem}>Mindmaps</Link>
+              <Link to="/games" className={styles.navItem}>Games</Link>
               <a onClick={handleLogout} className={styles.navItem}>Log Out</a>
             </>
           ) : (

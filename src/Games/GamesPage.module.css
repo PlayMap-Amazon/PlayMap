@@ -1,0 +1,199 @@
+.body {
+  background: radial-gradient(circle at 20% 80%, var(--primary-orange) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, var(--accent-orange) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, var(--dark-orange) 0%, transparent 50%),
+              linear-gradient(135deg, #1e2658 0%, rgba(255, 111, 0, 0.06) 100%);
+  min-height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.profilePage{
+  margin-top: 20px;
+  width: 63%;
+}
+
+.profileContainer{
+  display: flex;
+  gap: 20px;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+  background: rgba(255, 196, 0, 0.2);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.profilePicture {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 50%;
+}
+
+.userName {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.iconsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  transform: scale(0.7);
+  position: absolute;
+  right: 0px;
+}
+
+.row{
+  display: flex;
+  align-items: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+  width: 63%;
+}
+
+.button {
+  padding: 8px 16px;
+  width: 90%;
+  background: rgba(0, 81, 255, 0.644);
+  border: 1px solid var(--glass-border);  
+  box-shadow: 0 0 15px rgba(0, 47, 255, 0.418);
+  color: rgb(255, 250, 246);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  margin-top: 16px;
+}
+
+.button:hover {
+  background-color: #003168e1;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+  z-index: 999;
+}
+
+.gameSections {
+  max-width: 1400px;
+  margin: auto;
+  padding: 2.8rem 2rem 6rem 2rem; 
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  z-index: 2;
+}
+
+.modalContent {
+  border-radius: 12px;
+  padding: 20px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  position: relative;
+  width: 55vw;
+}
+
+.closeButton {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #333;
+}
+
+.section {
+  display: flex;
+  flex: 0 0 calc((100% - 30px) / 4);  
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+
+.section{
+  z-index: 1;
+}
+
+.backButton {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  transition: all 0.1s ease;
+  position: absolute;
+  top: 130px;
+  left: 20px;
+}
+
+.backButton:hover {
+  box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+  transform: translateY(-2px);
+}
+
+.contentContainer {
+  position: relative;
+  width: 100%;
+  height: 87vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameContainerWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem;
+}
+
+.gameContainer {
+  width: 90%;
+  max-width: 1200px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}

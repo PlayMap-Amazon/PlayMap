@@ -15,7 +15,6 @@ import styles from './CustomSidebar.module.css';
 const PageTypes = {
   MapPage: 'mapPage',
   UploadPage: 'uploadPage',
-  QuizPage: 'quizPage'
 };
 Object.freeze(PageTypes);
 

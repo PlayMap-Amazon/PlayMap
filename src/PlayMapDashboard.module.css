@@ -45,16 +45,6 @@
 }
 
 /*  GAME SECTIONS  */
-.gameSections {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 2.8rem 2rem 6rem 2rem; 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2.5rem;
-  position: relative;
-  z-index: 2;
-}
 
 .gameBox, .game-box {
   background: var(--glass);

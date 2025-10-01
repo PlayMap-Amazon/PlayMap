@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import styles from "./DashboardPage.module.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
-import { CustomSidebar, PageTypes } from "../CustomSidebar/CustomSidebar";
+import { PageTypes } from "../CustomSidebar/CustomSidebar";
 import UploadDoc from "../UploadDoc/UploadDoc";
 import MindMap from "../MindMap/MindMap";
-import FileViewer from "../FileViewer/FileViewer";
-import Quiz from "@/Quiz";
+import Navbar from "@/Navbar/Navbar";
+import FloatingParticles from "@/FloatingParticles";
 
 function DashboardPage() {
     const { user, loading } = useAuth();
@@ -13,35 +14,52 @@ function DashboardPage() {
     const [currentScreen, setCurrentScreen] = useState(PageTypes.MapPage);
     const [focusedFileMetadata, setFocusedFileMetadata] = useState(null);
 
-    // useEffect(() => {
-    //     if (!loading && !user) {
-    //         navigate('/login');
-    //     }
-    // }, [navigate, user, loading]);
+    useEffect(() => {
+        if (!loading && !user) {
+            navigate('/login');
+        }
+    }, [navigate, user, loading]);
 
-    // if (loading || !user) {
-    //     return (
-    //         <div>
-    //             <p>Loading...</p>
-    //         </div>
-    //     );
-    // }
+    const tabs = [
+        { name: "Mindmap", type: PageTypes.MapPage },
+        { name: "Upload", type: PageTypes.UploadPage },
+    ];
     
     return (
-        <div style={{ display: "flex", height: "100vh" }}>
-            <CustomSidebar onScreenChange={setCurrentScreen} />
-            <main style={{ height: "100vh", width: "100vw" }}>
-                <div style={{ height: "10%", width: "100%", alignItems: "center", display: "flex", justifyContent: "left" }}>
-                    <h1 style={{color: "#FD7003", paddingLeft: "17.5px"}}>PlayMap</h1>
+        <div className={styles.body}>
+            <Navbar />
+            <FloatingParticles />
+            <div className="w-[100%] h-[100vh] p-[60px] z-10">
+                <div style={{ height: "10%", width: "100%", display: "flex", justifyContent: "start", alignItems: "end" }}>
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab.type}
+                            onClick={() => setCurrentScreen(tab.type)}
+                            style={{
+                                backgroundColor: "#FFECCC",
+                                borderTopLeftRadius: "10px",
+                                borderTopRightRadius: "10px",
+                                marginRight: "10px",
+                                borderTop: "2px solid #ffd895",
+                                borderLeft: "2px solid #ffd895",
+                                borderRight: "2px solid #ffd895",
+                                fontWeight: "bold",
+                                color: currentScreen === tab.type ? "black" : "gray",
+                                padding: "12px 16px",
+                                cursor: "pointer",
+                            }}
+                        >
+                            {tab.name}
+                        </button>
+                    ))}
                 </div>
-                <div style={{ height: "90%", width: "100%", padding: "50px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <div style={{ height: "80%", width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
                     {currentScreen === PageTypes.MapPage && (
                         <MindMap />
                     )}
                     {currentScreen === PageTypes.UploadPage && <UploadDoc />}
-                    {currentScreen === PageTypes.QuizPage && <Quiz />}
                 </div>
-            </main>
+            </div>
         </div>
     );
 }

@@ -62,14 +62,14 @@ const UploadDoc = () => {
   };
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full border-2 border-solid border-[#ffd895] bg-[#FFECCC] p-10">
         <h1 className="text-center text-2xl font-bold mb-4">Document Summarizer</h1>
         <p className="text-center text-gray-600 mb-8">
             Extract key information and insights from your documents.
         </p>
 
         <div
-            className="bg-orange-100 border-2 border-dashed border-gray-300 p-12 mt-8 text-center rounded-xl cursor-pointer hover:bg-orange-50 transition-colors"
+            className="bg-blue-200 border-2 border-dashed border-gray-500 mt-15 h-[70%] text-center rounded-xl cursor-pointer hover:bg-blue-300 transition-colors flex flex-col justify-center items-center"
             onClick={handleClick}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
@@ -78,7 +78,7 @@ const UploadDoc = () => {
         >
             {loading ? (
                 <div className="flex flex-col items-center">
-                    <AiOutlineLoading className="animate-spin w-10 h-10 mb-3 text-orange-500"/>
+                    <AiOutlineLoading className="animate-spin w-30 h-30 mb-3 text-orange-500"/>
                     <p className="text-gray-700">Processing your file...</p>
                 </div>
             ) : (
@@ -91,12 +91,12 @@ const UploadDoc = () => {
                             ease: "easeInOut"
                         }}
                     >
-                        <FaUpload className="w-10 h-10 mb-3"/>
+                        <FaUpload className="w-30 h-30 mb-3"/>
                     </motion.div>
-                    <p className="text-gray-700">Drag a file here or click to upload</p>
+                    <p className="text-gray-700 font-semibold text-lg">Drag a file here or click to upload</p>
                 </div>
             )}
-            <small className="block mt-3 text-gray-500 text-sm">
+            <small className="block mt-3 text-gray-500 text-lg">
                 Accepted: PDF, Word, Markdown, Text | Max: 10MB
             </small>
       <input

@@ -138,7 +138,6 @@ const KnowledgeGraph = ({ nodes = [], links = [], onNodeFocus, onDrag, onZoom })
             height: '100%',
             width: '100%',
             backgroundColor: '#00000000',
-            borderRadius: '8px',
             minHeight: 0
           }}
         />

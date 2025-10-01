@@ -2,19 +2,18 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from './AuthContext';
 
 import styles from './App.module.css';
-import TopBar from './Topbar/Topbar';
 import PresentationPart from './PresentationPart/PresentationPart';
 import NotFoundPage from './NotFoundPage/NotFoundPage';
 import LoginPage from './LoginPage/LoginPage';
 import RegisterPage from './RegisterPage/RegisterPage';
 import DashboardPage from './Dashboard/DashboardPage';
 
-import { ArrowedButton } from './components/ui/button';
 import Example from './Example';
 import { Toaster } from 'sonner';
 import Quiz from './Quiz';
 import Navbar from './Navbar/Navbar';
 import ProfilePage from './Profile/ProfilePage';
+import GamesPage from './Games/GamesPage';
 
 const cards = [
   {
@@ -45,11 +44,13 @@ const cards = [
 
 const router = createBrowserRouter([
   { path: '/', element: <MainPage /> },
+  { path: '/games', element: <GamesPage /> },
   { path: '/quizz', element: <Quiz /> },
   { path: '/example', element: <Example /> },
   { path: '/login', element: <LoginPage /> },
   { path: '/register', element: <RegisterPage /> },
-  { path: '/dashboard', element: <ProfilePage /> },
+  { path: '/profile', element: <ProfilePage /> },
+  { path: '/dashboard', element: <DashboardPage /> },
   { path: '*', element: <NotFoundPage /> }
 ]);
 
