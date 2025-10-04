@@ -14,6 +14,7 @@ import Quiz from './Quiz';
 import Navbar from './Navbar/Navbar';
 import ProfilePage from './Profile/ProfilePage';
 import GamesPage from './Games/GamesPage';
+import ChatBot from './ChatBot/ChatBot';
 
 const cards = [
   {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
   { path: '/register', element: <RegisterPage /> },
   { path: '/profile', element: <ProfilePage /> },
   { path: '/dashboard', element: <DashboardPage /> },
+  { path: '/chatbot', element: <ChatBot /> },
   { path: '*', element: <NotFoundPage /> }
 ]);
 

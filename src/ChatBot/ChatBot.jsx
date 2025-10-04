@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
 import styles from './ChatBot.module.css'
 import BlockRenderer from './BlockRenderer'
-import FloatingParticles from '../PlayMapDashboard/FloatingParticles'
+import FloatingParticles from '../FloatingParticles'
+import Navbar from '@/Navbar/Navbar'
+import { useEffect, useState } from 'react'
 
 export default function ChatBot() {
   const [message, setMessage] = useState('')
@@ -58,6 +59,7 @@ export default function ChatBot() {
 
   return (
     <div className={styles.body}>
+      <Navbar />
       <FloatingParticles />
       <div className={styles.chatbotContainer}>
         <div className={styles.headerInfo}>

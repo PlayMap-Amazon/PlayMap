@@ -1,0 +1,531 @@
+/* Crossword Container */
+.crosswordContainer {
+  margin: 20px auto;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  max-width: 900px;
+  max-height: 80vh;
+  border-radius: 20px;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progressInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.progressText {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.gridInfo {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.progressBar {
+  width: 250px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #8BC34A);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+/* Game Layout */
+.gameLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  max-height: none;
+}
+
+@media (min-width: 1200px) {
+  .gameLayout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    align-items: start;
+    max-height: 65vh;
+  }
+}
+
+/* Grid Container */
+.gridContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  gap: 2px;
+  background: #333;
+  padding: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: fit-content;
+  margin: 0 auto;
+}
+
+/* Cells with dynamic sizing */
+.cell {
+  position: relative;
+  width: var(--cell-size, 45px);
+  height: var(--cell-size, 45px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  min-width: 25px;
+  min-height: 25px;
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.blackCell {
+  background: #333;
+  cursor: default;
+}
+
+.whiteCell {
+  background: white;
+  border: 2px solid #ddd;
+}
+
+.whiteCell:hover {
+  border-color: #667eea;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+.selectedCell {
+  border-color: #667eea !important;
+  background: #f0f4ff !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3) !important;
+}
+
+.highlightedCell {
+  background: #e8f0fe !important;
+  border-color: #4285f4 !important;
+}
+
+.cellNumber {
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  font-size: clamp(8px, calc(var(--cell-size, 45px) * 0.22), 12px);
+  font-weight: 600;
+  color: #333;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.cellInput {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  font-size: clamp(12px, calc(var(--cell-size, 45px) * 0.35), 18px);
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* Clues Container */
+.cluesContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  max-height: 500px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+@media (min-width: 1200px) {
+  .cluesContainer {
+    max-height: 600px;
+    width: auto;
+    max-width: none;
+  }
+}
+
+.cluesSection {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.cluesTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #667eea;
+}
+
+.cluesList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.clueItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(102, 126, 234, 0.05);
+  border: 2px solid transparent;
+}
+
+.clueItem:hover {
+  background: rgba(102, 126, 234, 0.1);
+  transform: translateX(5px);
+}
+
+.selectedClue {
+  background: rgba(102, 126, 234, 0.15) !important;
+  border-color: #667eea !important;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.completedClue {
+  background: rgba(76, 175, 80, 0.1) !important;
+  border-color: #4CAF50 !important;
+  opacity: 0.8;
+}
+
+.completedClue .clueText {
+  text-decoration: line-through;
+  color: #4CAF50;
+}
+
+.clueNumber {
+  font-weight: 700;
+  color: #667eea;
+  min-width: 25px;
+  font-size: 14px;
+}
+
+.clueText {
+  flex: 1;
+  color: #555;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.checkMark {
+  color: #4CAF50;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Loading Screen */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 50px;
+  margin: 50px auto;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.loadingSpinner {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+
+.loadingText {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+/* Error Screen */
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 50px;
+  margin: 50px auto;
+  max-width: 500px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.errorText {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 20px 0 30px 0;
+  line-height: 1.5;
+}
+
+/* Completion Screen */
+.completionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 900px;
+  max-height: 80vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.completionCard {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 50px;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 100%;
+}
+
+.completionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.celebrationIcon {
+  font-size: 4rem;
+  margin: 20px 0;
+}
+
+.completionMessage {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.restartButton {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.restartButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+}
+
+/* Responsive Design */
+@media (max-width: 1199px) {
+  .gameLayout {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .cluesContainer {
+    max-height: none;
+    order: -1;
+  }
+  
+  .grid {
+    gap: 1px;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .crosswordContainer {
+    margin: 10px;
+    padding: 15px;
+    max-height: none;
+    border-radius: 15px;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+  }
+  
+  .progressBar {
+    width: 200px;
+  }
+  
+  .gridContainer {
+    padding: 15px;
+  }
+  
+  .cluesContainer {
+    padding: 15px;
+  }
+  
+  .cluesTitle {
+    font-size: 1.2rem;
+  }
+  
+  .clueText {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .crosswordContainer {
+    margin: 5px;
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 1.4rem;
+  }
+  
+  .progressBar {
+    width: 180px;
+  }
+  
+  .gridContainer {
+    padding: 10px;
+  }
+  
+  .grid {
+    padding: 4px;
+    gap: 1px;
+  }
+  
+  .cluesContainer {
+    padding: 12px;
+  }
+  
+  .completionCard {
+    padding: 30px 20px;
+  }
+  
+  .completionTitle {
+    font-size: 2rem;
+  }
+  
+  .celebrationIcon {
+    font-size: 3rem;
+  }
+
+  .clueItem {
+    padding: 8px 10px;
+  }
+
+  .clueText {
+    font-size: 12px;
+  }
+}
+
+/* Adaptive grid styles */
+.gridContainer {
+  /* Ensure the grid container can adapt to different content sizes */
+  overflow: visible;
+}
+
+.grid {
+  /* Allow the grid to resize based on content */
+  min-width: fit-content;
+  max-width: 100%;
+}
+
+/* Custom Scrollbar */
+.cluesContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cluesContainer::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+.cluesContainer::-webkit-scrollbar-thumb {
+  background: rgba(102, 126, 234, 0.5);
+  border-radius: 3px;
+}
+
+.cluesContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 126, 234, 0.7);
+}
+
+/* Utility classes for better content adaptation */
+.adaptiveLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .adaptiveLayout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 20px;
+  }
+}

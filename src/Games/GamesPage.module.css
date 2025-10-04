@@ -3,9 +3,9 @@
               radial-gradient(circle at 80% 20%, var(--accent-orange) 0%, transparent 50%),
               radial-gradient(circle at 40% 40%, var(--dark-orange) 0%, transparent 50%),
               linear-gradient(135deg, #1e2658 0%, rgba(255, 111, 0, 0.06) 100%);
-  min-height: 100vh;
+  height: 100vh;
   width: 100%;
-  overflow-y: auto;
+  overflow: hidden;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -184,16 +184,17 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 2rem;
+  padding: 0 2rem 2rem 2rem;
 }
 
 .gameContainer {
-  width: 90%;
-  max-width: 1200px;
+  width: 70%;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1rem;
+  margin-top: 3rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 100%;
 }

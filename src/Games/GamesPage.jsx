@@ -6,6 +6,9 @@ import { useAuth } from "../AuthContext";
 import Navbar from "@/Navbar/Navbar";
 import FloatingParticles from "@/FloatingParticles";
 import GameBox from "./GameBox";
+import Quiz from "./Quiz/Quiz";
+import Crossword from "./Crossword/Crossword";
+import Memory from "./Memory/Memory";
 
 const Games = {
     QUIZ: "QUIZ",
@@ -114,36 +117,23 @@ function GamesPage() {
                         >
                             {currentGame === Games.QUIZ && (
                                 <div 
-                                    className={[styles.gameContainer, 'h-[75vh]'].join(' ')}
+                                    className={[styles.gameContainer, 'h-[80vh]'].join(' ')}
                                 >
-                                        <iframe
-                                        src="https://play.kahoot.it/v2/?quizId=3b1c3f7e-3f4e-4e2b-9d3a-8f4e2b9d3a8f"
-                                        title="Trivia Quiz"
-                                        allowFullScreen
-                                        style={{ width: '100%', height: '100%', border: 'none' }}
-                                    ></iframe>
+                                    <Quiz />
                                 </div>
                             )}
                             {currentGame === Games.SCRAMBLE && (
                                 <div 
-                                    className={[styles.gameContainer, 'h-[75vh]'].join(' ')}
+                                    className={[styles.gameContainer, 'h-[62vh]'].join(' ')}
                                 >
-                                    <iframe
-                                        src="https://wordwall.net/resource/123456/word-scramble"
-                                        title="Word Scramble"
-                                        style={{ width: '100%', height: '100%', border: 'none' }}
-                                    ></iframe>
+                                    <Crossword />
                                 </div>
                             )}
                             {currentGame === Games.MATCHING_PAIRS && (
                                 <div 
-                                    className={[styles.gameContainer, 'h-[75vh]'].join(' ')}
+                                    className={[styles.gameContainer, 'h-[62vh]'].join(' ')}
                                 >
-                                    <iframe
-                                        src="https://wordwall.net/resource/654321/matching-pairs"
-                                        title="Matching Pairs"
-                                        style={{ width: '100%', height: '100%', border: 'none' }}
-                                    ></iframe>
+                                    <Memory />
                                 </div>
                             )}
                         </motion.div>
