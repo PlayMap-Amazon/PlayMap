@@ -18,7 +18,7 @@ export default function Navbar() {
       <div className={styles.navContainer}>
 
         <div className={styles.navLogo}>
-          <Link to="/playmapdashboard" className={styles.logoIcon}>
+          <Link to="/profile" className={styles.logoIcon}>
             <img src="/logo.png" alt="PlayMap Logo" />
           </Link>
           <span>PlayMap</span>

@@ -1,5 +1,4 @@
 import { createContext, useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const AuthContext = createContext();
 
@@ -39,7 +38,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (data) => {
     try {
-        data.username = "TempUser";
+        data.username = data.email.split('@')[0];
         const res = await fetch(`${url}/auth/register`, {
             method: 'POST',
             credentials: 'include',
@@ -53,12 +52,14 @@ export const AuthProvider = ({ children }) => {
             const result = await res.json();
             setUser(result);
             return result;
+        } else {
+            setUser(null);
+            return null;
         }
-        setUser(null);
-
-        return null;
     } catch (error) {
         console.error('Fetch failed:', error.message || error);
+        setUser(null);
+        return null;
     }
   }
   
@@ -84,6 +85,8 @@ export const AuthProvider = ({ children }) => {
         }
     } catch (error) {
         console.error('Fetch failed:', error.message || error);
+        setUser(null);
+        return null;
     }
   };
 

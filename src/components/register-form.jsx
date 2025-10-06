@@ -102,7 +102,7 @@ function secondPanel(
   )
 }
 
-const companions = ["/brain.png", "/brain.png", "/brain.png", "/brain.png"]
+const companions = ["/0.png", "/1.png", "/2.png", "/3.png"]
 
 function thirdpanel(onClickCallback) {
   return (
@@ -189,7 +189,6 @@ export function RegisterForm({
   async function handleRegister(data) {
     try {
       await onSubmitCallback(data);
-      // navigate("/dashboard");
     } catch (err) {
       // Optionally handle error (e.g., show message)
     }

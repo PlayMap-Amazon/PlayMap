@@ -138,7 +138,7 @@ export function LoginForm({
                 className="text-center text-sm"
               >
                 Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4">
+                <a className="underline underline-offset-4" onClick={() => navigate('/register')}>
                   Sign up
                 </a>
               </motion.div>

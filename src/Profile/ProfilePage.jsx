@@ -17,6 +17,7 @@ import Portal from "./Portal.jsx";
 import { useAuth } from "../AuthContext"; 
 import FloatingParticles from "@/FloatingParticles";
 import Navbar from "@/Navbar/Navbar";
+import { Navigate } from "react-router-dom";
 
 export default function ProfilePage() {
   const { user, loading } = useAuth();
@@ -25,7 +26,9 @@ export default function ProfilePage() {
   const [showAchievements, setShowAchievements] = useState(false);
 
   if (loading) return <div className={styles.body}>Loading...</div>;
-  if (!user) return <div className={styles.body}>No user logged in</div>;
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
 
   const safeUser = {
     username: user.username ?? user.name ?? "Unknown",

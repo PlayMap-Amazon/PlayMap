@@ -6,21 +6,20 @@ import { useAuth } from '../AuthContext';
 import { ArrowedButton } from '../components/ui/button';
 
 import { RegisterForm } from '@/components/register-form';
+import Navbar from '@/Navbar/Navbar';
 
 function RegisterPage() {
   const { register } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className={common_styles.FirstContainer}>
-      <TopBar>
-        <ArrowedButton className='mr-5' variant='outline' link='/login' unroundOnHover>Log in</ArrowedButton>
-        <ArrowedButton link='/' unroundOnHover>Home</ArrowedButton>
-      </TopBar>
+      <Navbar />
       <div className="flex-grow">
         <div className="flex flex-col items-center justify-center h-full">
           <div className="w-full max-w-sm">
-            <RegisterForm onSubmitCallback={(loginObj) => {
-              const user = register(loginObj);
+            <RegisterForm onSubmitCallback={async (loginObj) => {
+              const user = await register(loginObj);
               if (user) {
                 navigate("/dashboard");
               }
